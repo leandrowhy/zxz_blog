@@ -142,16 +142,20 @@ export default new Vuex.Store({
       ],
     },
     enterHot: [],
+    isShow: false,
   },
   mutations: {
-    getEnterHot(state, data) {
+    setEnterHot(state, data) {
       state.enterHot = data;
+    },
+    setIsShow(state, data) {
+      state.isShow = data;
     },
   },
   actions: {
     getArticleHot(content) {
       getArticleHot().then((res) => {
-        content.commit("getEnterHot", res.data.content);
+        content.commit("setEnterHot", res.data.content);
       });
     },
   },

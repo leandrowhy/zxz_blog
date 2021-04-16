@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="container home-main">
-      <aside class="home-left"><home-aside /></aside>
+      <aside class="home-left"><home-aside :homeInfo="homeInfo" /></aside>
       <div class="home-center"><HomeAsideCenter /></div>
       <aside class="home-right"><homeAsideRight /></aside>
     </div>
@@ -26,7 +26,7 @@ import carousel from "@/components/carousel/carousel";
 import homeAside from "@/views/Home/homeAside";
 import homeAsideRight from "@/views/Home/homeAsideRight";
 import HomeAsideCenter from "@/views/Home/HomeAsideCenter";
-import { getArticle } from "@/api/api";
+import { getArticle, getHomeInfo } from "@/api/api";
 export default {
   name: "Home",
   components: {
@@ -61,6 +61,7 @@ export default {
           img: require("@/assets/img/5fb1f290df867.jpg"),
         },
       ],
+      homeInfo: [],
     };
   },
   created() {
@@ -70,6 +71,10 @@ export default {
     getData() {
       getArticle({ pageNumber: 1, pageSize: 3 }).then((res) => {
         this.banner = res.data.content;
+        this.$show();
+      });
+      getHomeInfo().then((res) => {
+        this.homeInfo = res.data;
       });
     },
   },

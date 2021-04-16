@@ -17,7 +17,8 @@
           <p class="card-intor">{{ item.introduction }}</p>
           <div class="card-else">
             <span class="fa clock"
-              ><i class="iconfont icon-rili"></i>{{ item.date }}</span
+              ><i class="iconfont icon-rili"></i
+              >{{ item.date | timeTransformation }}</span
             >
             <span class="fa eye"
               ><i class="iconfont icon-liulan"></i>{{ item.views }}</span
@@ -59,16 +60,33 @@ export default {
       },
     },
   },
+  filters: {
+    timeTransformation(inputTime) {
+      let date = new Date(inputTime);
+      let y = date.getFullYear();
+      let m = date.getMonth() + 1;
+      m = m < 10 ? "0" + m : m;
+      let d = date.getDate();
+      d = d < 10 ? "0" + d : d;
+      return y + "-" + m + "-" + d;
+    },
+  },
   methods: {
     load() {},
     goRouter(id) {
-      this.$router.push({ name: "Studydetails", params: { id } });
+      this.$router.push({
+        name: "Studydetails",
+        params: { id }
+      });
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
+.left {
+  min-height: 70vh;
+}
 .list {
   padding: 16px;
   .card {

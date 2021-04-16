@@ -2,10 +2,6 @@
   <div class="details">
     <div class="bg_active">
       <img class="bg-img" v-lazy="enter.img" />
-      <!-- <img
-        class="bg-img"
-        src="https://api.adicw.cn/uploads/StudyImg/20200204113055.jpg"
-      /> -->
     </div>
     <div class="study-main">
       <div class="studymain-shell" ref="docbox">
@@ -53,6 +49,7 @@ export default {
       let id = (this.id = this.$route.params.id);
       getArticleInfo({ id }).then((res) => {
         this.enter = res.data.content;
+        this.$show();
       });
     },
     listenerFunction() {
@@ -69,8 +66,10 @@ export default {
     },
   },
   watch: {
-    $route(to) {
-      this.getData();
+    $route(to, from) {
+      if (to.params.id !== from.params.id) {
+        this.getData();
+      }
     },
   },
   beforeDestroy() {

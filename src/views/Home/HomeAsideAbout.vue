@@ -5,13 +5,13 @@
         <span class="time">{{ dateTime }}</span>
       </div>
     </div>
-    <div class="blogger">Leandrowhy Blog</div>
+    <div class="blogger">赵小赵个人Blog</div>
     <div class="blogger-ingo">
       游戏、宅男、前端编程，这是博主的三大标签。本站推荐博主自己所总结的知识，也会分享一些日常心得~
     </div>
     <div class="blog-info">
       <BlogInfoItem
-        v-for="(item, index) in blogInfo"
+        v-for="(item, index) in homeInfo"
         :key="index"
         :titleTag="blogTag[index]"
         :number="item"
@@ -27,10 +27,17 @@ export default {
   components: {
     BlogInfoItem,
   },
+  props: {
+    homeInfo: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
   data() {
     return {
       blogTag: ["文章", "动漫", "评论", "浏览"],
-      blogInfo: [123, 23, 653, 7843],
       valDate: 0,
     };
   },
@@ -43,18 +50,9 @@ export default {
     dateTime() {
       if (this.valDate != null) {
         var date = new Date(this.valDate);
-        var hour = date
-          .getHours()
-          .toString()
-          .padStart(2, "0");
-        var minute = date
-          .getMinutes()
-          .toString()
-          .padStart(2, "0");
-        var second = date
-          .getSeconds()
-          .toString()
-          .padStart(2, "0");
+        var hour = date.getHours().toString().padStart(2, "0");
+        var minute = date.getMinutes().toString().padStart(2, "0");
+        var second = date.getSeconds().toString().padStart(2, "0");
 
         return hour + " : " + minute + " : " + second;
       }

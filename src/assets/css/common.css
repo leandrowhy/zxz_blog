@@ -12,6 +12,7 @@ html {
 #nprogress .bar {
   top: 70px !important;
   background: linear-gradient(90deg, #9abdeb, #80f9b7, #9abdeb) !important;
+  height: 5px !important;
 }
 #nprogress .peg {
   display: none !important;
@@ -29,7 +30,7 @@ html {
 }
 
 /* 加载动画 */
-.loading{
+.loading {
   display: flex;
   justify-content: center;
   align-items: center;

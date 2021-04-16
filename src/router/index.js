@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import { Notification } from "element-ui";
+import store from "../store/index";
 
 Vue.use(VueRouter);
 
@@ -65,18 +66,7 @@ const router = new VueRouter({
   routes,
 });
 
-//页面加载进度条
-// 引入
 import NProgress from "nprogress";
-import "nprogress/nprogress.css";
-// import { from } from "core-js/core/array";
-// 进度条配置项这样写
-NProgress.configure({
-  showSpinner: false,
-  minimum: 0.3,
-  trickleRate: 10,
-  trickleSpeed: 100,
-});
 // 路由跳转前钩子函数中 - 执行进度条开始加载
 router.beforeEach((to, from, next) => {
   if (to.meta.perfect) {
@@ -86,12 +76,12 @@ router.beforeEach((to, from, next) => {
       type: "warning",
     });
   }
-  NProgress.start();
+  if (to.params.id !== from.params.id) {
+    NProgress.start();
+    // NProgress.inc();
+    store.commit("setIsShow", false);
+  }
   next();
-});
-// 路由跳转后钩子函数中 - 执行进度条加载结束
-router.afterEach((to, from) => {
-  NProgress.done(true);
 });
 
 export default router;

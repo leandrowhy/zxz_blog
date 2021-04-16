@@ -1,6 +1,6 @@
 <template>
   <div class="home-aside">
-    <home-aside-about v-if="isShow" />
+    <home-aside-about v-if="isShow" :homeInfo="homeInfo" />
     <titleBox title="最受欢迎的文章" :isGreen="isGreen">
       <ul slot="content" class="article">
         <li
@@ -38,6 +38,12 @@ export default {
     isGreen: {
       type: Boolean,
       default: false,
+    },
+    homeInfo: {
+      type: Array,
+      default() {
+        return [];
+      },
     },
   },
   computed: {

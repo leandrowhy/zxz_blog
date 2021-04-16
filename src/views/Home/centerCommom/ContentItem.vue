@@ -144,7 +144,7 @@ export default {
       text-align: center;
       font-size: 18px;
       line-height: 30px;
-      color: rgb(219, 175, 175);
+      color: rgb(27, 24, 24);
       opacity: 0;
       transition: all 0.3s;
     }

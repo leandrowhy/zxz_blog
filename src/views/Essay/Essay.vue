@@ -1,6 +1,8 @@
 <template>
   <div class="essay">
-    <div class="essay-top"><EssaySearch /></div>
+    <div class="essay-top">
+      <EssaySearch :articcle="allList" @searchRequest="searchRequest" />
+    </div>
     <div class="contain">
       <EssayLeft :class="['contain-left']" :articcle="articcle" />
       <EssayRight :class="['contain-right']" />
@@ -12,7 +14,7 @@
 import EssaySearch from "@/views/Essay/EssaySearch";
 import EssayLeft from "@/views/Essay/EssayLeft";
 import EssayRight from "@/views/Essay/EssayRight";
-import { getArticle } from "@/api/api";
+import { getArticle, getSearch } from "@/api/api";
 export default {
   name: "Essay",
   components: {
@@ -23,15 +25,31 @@ export default {
   data() {
     return {
       articcle: [],
+      allList: [],
     };
   },
   created() {
     this.getData();
   },
   methods: {
+    searchRequest(obj) {
+      getSearch(obj).then((res) => {
+        if (res.code == 200) {
+          this.articcle = res.data;
+        } else {
+          this.$notify({
+            title: "抱歉",
+            message: res.msg,
+            type: "warning",
+          });
+        }
+      });
+    },
     getData() {
       getArticle({ pageNumber: 1, pageSize: 1000 }).then((res) => {
         this.articcle = res.data.content;
+        this.allList = res.data.content;
+        this.$show();
       });
     },
   },

@@ -2,7 +2,7 @@
   <header class="tabbar">
     <div title="点击返回主页">
       <div class="login">
-        <span>αβγδεζ</span>
+        <span>赵小赵Blog</span>
       </div>
     </div>
     <div class="nav-bar">
@@ -145,7 +145,7 @@ export default {
     font-size: 14px;
     li {
       position: relative;
-      padding: 6px 14px;
+
       cursor: pointer;
       box-sizing: border-box;
       display: flex;
@@ -153,6 +153,10 @@ export default {
       z-index: 5;
       &:hover {
         color: #72dafa;
+      }
+      span {
+        display: inline-block;
+        padding: 6px 14px;
       }
     }
   }

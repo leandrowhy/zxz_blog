@@ -3,6 +3,7 @@
     class="center infinite-list"
     v-infinite-scroll="load"
     infinite-scroll-disabled="disabled"
+    :infinite-scroll-immediate="false"
   >
     <ContentItem
       v-for="(item, index) in list"
@@ -46,17 +47,22 @@ export default {
     disabled() {
       return this.loading || this.noMore;
     },
+    isShow() {
+      return this.$store.state.isShow;
+    },
   },
   created() {
     this.getMessage();
   },
   methods: {
     load() {
-      //滑到底部时进行加载
-      this.loading = true;
-      setTimeout(() => {
-        this.getMessage(); //调用接口，此时页数+1，查询下一页数据
-      }, 2000);
+      if (this.isShow) {
+        //滑到底部时进行加载
+        this.loading = true;
+        setTimeout(() => {
+          this.getMessage(); //调用接口，此时页数+1，查询下一页数据
+        }, 2000);
+      }
     },
     getMessage() {
       this.count += 1; //页数+1

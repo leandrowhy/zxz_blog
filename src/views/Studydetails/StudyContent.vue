@@ -30,25 +30,38 @@
       <hr />
     </div>
     <div class="inner" ref="content" v-html="code"></div>
+    <StudyComment />
   </div>
 </template>
 
 <script>
+import StudyComment from "@/views/Studydetails/StudyComment";
+//markdown语法解析
 import marked from "marked";
 import hljs from "highlight.js";
 import { getArticleInfo, addArticleViews } from "@/api/api";
 
 export default {
   name: "StudyContent",
+  components: {
+    StudyComment,
+  },
+  props: {
+    enter: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+  },
   data() {
     return {
       code: "",
       sectionContainer: "",
-      enter: {},
     };
   },
   created() {
-    this.getData();
+    // this.getData();
   },
   filters: {
     timeTransformation(inputTime) {
@@ -64,10 +77,11 @@ export default {
   methods: {
     getData() {
       let id = this.$route.params.id;
-      getArticleInfo({ id }).then((res) => {
-        this.enter = res.data.content;
-        this.toProcess();
-      });
+      // getArticleInfo({ id }).then((res) => {
+      //   this.enter = res.data.content;
+      //   this.toProcess();
+      // });
+      this.toProcess()
       addArticleViews({ id });
     },
     toProcess() {
@@ -79,7 +93,7 @@ export default {
         pedantic: false,
         gfm: true,
         tables: true,
-        breaks: false,
+        breaks: true,
         sanitize: false,
         smartLists: true,
         smartypants: false,
@@ -150,8 +164,10 @@ export default {
     },
   },
   watch: {
-    $route(to) {
-      this.getData();
+    enter: function (indexVal, oldVal) {
+      if(indexVal.id){
+        this.getData();
+      }
     },
   },
 };

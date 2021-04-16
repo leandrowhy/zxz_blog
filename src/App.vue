@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <tab-bar />
-    <router-view />
+    <router-view class="animated fadeIn" v-show="isShow" />
+    <div class="mask fadeOut" v-show="!isShow"></div>
     <div
       title="点击返回顶部"
       class="back-top"
@@ -21,6 +22,11 @@ export default {
     tabBar,
   },
   name: "App",
+  computed: {
+    isShow() {
+      return this.$store.state.isShow;
+    },
+  },
   data() {
     return {
       moveHeight: "-100%",
@@ -70,7 +76,9 @@ export default {
 
 <style lang="scss">
 @import url("//at.alicdn.com/t/font_2294844_97n5p59fg74.css");
-@import url("./assets/css/markdown.css");
+@import "./assets/css/highlight.min.css";
+@import "./assets/css/markdown.scss";
+
 .back-top {
   position: fixed;
   right: 30px;
@@ -81,5 +89,12 @@ export default {
   background: url("./assets/img/back-top.png") no-repeat bottom/cover;
   transition: all 0.6s;
   cursor: pointer;
+}
+.mask {
+  height: calc(100vh - 70px);
+  background: #fff;
+}
+.details {
+  overflow: hidden;
 }
 </style>

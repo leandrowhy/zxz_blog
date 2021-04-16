@@ -73,7 +73,7 @@ html {
 .clock {
   width: 100%;
   height: 130px;
-  background-size: cover;
+  background-size: cover !important;
   .clockanm {
     width: 100%;
     height: 100%;

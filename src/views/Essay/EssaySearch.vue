@@ -11,6 +11,7 @@
             prefix-icon="el-icon-search"
             :trigger-on-focus="false"
             @select="handleSelect"
+            @input="search"
             clearable
           ></el-autocomplete>
         </div>
@@ -42,11 +43,18 @@
 </template>
 
 <script>
-import deepClone from "@/tools/deepClone";
+import { debounce } from "@/tools/utils";
 export default {
+  props: {
+    articcle: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
   data() {
     return {
-      restaurants: [],
       state: "",
       sortBom: 0,
       cata: ["ALL", "前端", "后端"],
@@ -55,26 +63,36 @@ export default {
     };
   },
   computed: {
-    allList() {
-      return this.$store.state.essayData;
+    restaurants() {
+      return this.articcle;
     },
   },
   methods: {
+    searchRequest(key, sort) {
+      this.$emit("searchRequest", { key, sort });
+      // console.log(key, sort);
+    },
     cataClick(str, index) {
       this.activeIndex = index;
       this.activeCata = str;
+      this.state = str;
+      this.searchRequest(this.state, this.sortBom);
     },
     handleCommand(command) {
       this.sortBom = command;
-      if (command) {
-        //1 根据浏览量排行
-      } else {
-        //0 根据发布时间排行
-      }
+      this.searchRequest(this.state, this.sortBom);
     },
+    //监听输入框内容 防抖函数
+    search: debounce(function () {
+      if (this.state == "") {
+        this.activeIndex = 0;
+        this.activeCata = "ALL";
+      }
+      this.searchRequest(this.state, this.sortBom);
+    }),
     querySearch(queryString, cb) {
-      var restaurants = this.restaurants;
-      var results = queryString
+      let restaurants = this.restaurants;
+      let results = queryString
         ? restaurants.filter(this.createFilter(queryString))
         : restaurants;
       // 调用 callback 返回建议列表的数据
@@ -92,14 +110,7 @@ export default {
       };
     },
     handleSelect(item) {
-      console.log(item);
-    },
-  },
-  watch: {
-    allList: {
-      handler: function () {
-        this.restaurants = deepClone(this.allList);
-      },
+      this.searchRequest(item.title, this.sortBom);
     },
   },
 };

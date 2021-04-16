@@ -11,6 +11,7 @@ import "./assets/css/base.css";
 //css公共样式
 import "./assets/css/common.css";
 
+
 //bus总线
 Vue.prototype.$bus = new Vue();
 
@@ -24,6 +25,27 @@ Vue.use(VueLazyload, {
 
 import infiniteScroll from "vue-infinite-scroll";
 Vue.use(infiniteScroll);
+
+//页面加载进度条
+// 引入
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
+// import { from } from "core-js/core/array";
+// 进度条配置项这样写
+NProgress.configure({
+  showSpinner: false,
+  minimum: 0.3,
+  trickleRate: 1,
+  trickleSpeed: 800,
+  speed: 500,
+});
+
+Vue.prototype.$show = function() {
+  setTimeout(() => {
+    NProgress.done(true);
+    store.commit("setIsShow", true);
+  }, 800);
+};
 
 Vue.config.productionTip = false;
 new Vue({
