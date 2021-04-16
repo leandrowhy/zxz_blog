@@ -1,6 +1,6 @@
 # 赵小赵个人博客
 
-> 博客链接:[https://clowned.cn](https://clowned.cn)
+> 博客链接：[https://clowned.cn](https://clowned.cn)
 
 技术栈
 
