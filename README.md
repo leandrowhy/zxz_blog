@@ -8,9 +8,14 @@
 
 插件：vue-lazyload/Axios
 
+后台：SASS/Es6/Vue/Vue-Router/Element
+
+插件: vue-quill-editor/mavon-editor
+
 > 文章编写支持Markdown语法和富文本编辑
 
 后端: Node/Express/Mysql
+
 
 已完成：
 
