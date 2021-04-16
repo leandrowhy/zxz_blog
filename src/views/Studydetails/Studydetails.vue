@@ -5,7 +5,7 @@
     </div>
     <div class="study-main">
       <div class="studymain-shell" ref="docbox">
-        <aside class="bot-left"><AsideLeft /></aside>
+        <aside class="bot-left"><AsideLeft :enter="enter" /></aside>
         <div class="bot-content"><StudyContent :enter="enter" /></div>
         <div class="bot-right"><AsideRight :bgimg="enter.img" /></div>
       </div>

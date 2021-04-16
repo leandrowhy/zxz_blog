@@ -14,7 +14,7 @@
         </li>
       </ul>
     </titleBox>
-    <AsideShare />
+    <AsideShare :enter="enter" />
   </div>
 </template>
 
@@ -28,6 +28,14 @@ export default {
     homeAside,
     AsideShare,
     titleBox,
+  },
+  props: {
+    enter: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
   },
   data() {
     return {
