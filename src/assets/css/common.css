@@ -1,0 +1,54 @@
+body,
+html {
+  scroll-behavior: smooth;
+  /* overflow-x: hidden; */
+}
+.container {
+  display: flex;
+  width: 80%;
+  min-width: 1350px;
+  margin: 0 auto;
+}
+#nprogress .bar {
+  top: 70px !important;
+  background: linear-gradient(90deg, #9abdeb, #80f9b7, #9abdeb) !important;
+}
+#nprogress .peg {
+  display: none !important;
+}
+
+.search .el-input--suffix .el-input__inner {
+  box-sizing: border-box;
+  padding: 0 !important;
+  display: block !important;
+  background: none !important;
+  border: none !important;
+  outline: none !important;
+  width: 600px;
+  margin-left: 30px;
+}
+
+/* 加载动画 */
+.loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.loading span {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 2px solid #409eff;
+  border-left: transparent;
+  animation: zhuan 0.5s linear infinite;
+  border-radius: 50%;
+}
+@keyframes zhuan {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
