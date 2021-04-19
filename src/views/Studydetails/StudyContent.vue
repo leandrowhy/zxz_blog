@@ -81,7 +81,7 @@ export default {
       //   this.enter = res.data.content;
       //   this.toProcess();
       // });
-      this.toProcess()
+      this.toProcess();
       addArticleViews({ id });
     },
     toProcess() {
@@ -114,13 +114,14 @@ export default {
       // 提取h3标签
       let headers = content.querySelectorAll("h3");
       sectionContainer = document.createElement("ul");
-      each.call(headers, function (h) {
-        sectionContainer.appendChild(self.makeLink(h));
+      each.call(headers, function (h, i) {
+        sectionContainer.appendChild(self.makeLink(h, i));
       });
       return sectionContainer.innerHTML;
     },
-    makeLink(h) {
+    makeLink(h, i) {
       let link = document.createElement("li");
+      h.id = "directory" + i;
       window.arst = h;
       let text = [].slice
         .call(h.childNodes)
@@ -136,8 +137,8 @@ export default {
         .join("")
         .replace(/\(.*\)$/, "");
       link.innerHTML =
-        '<a class="section-link" data-scroll href="#' +
-        h.id +
+        '<a class="section-link" data-scroll href="#directory' +
+        i +
         '">' +
         this.htmlEscape(text) +
         "</a>";
@@ -151,21 +152,21 @@ export default {
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;");
     },
-    collectH3s(h) {
-      let h3s = [];
-      let next = h.nextSibling;
-      while (next && next.tagName !== "H2") {
-        if (next.tagName === "H3") {
-          h3s.push(next);
-        }
-        next = next.nextSibling;
-      }
-      return h3s;
-    },
+    // collectH3s(h) {
+    //   let h3s = [];
+    //   let next = h.nextSibling;
+    //   while (next && next.tagName !== "H2") {
+    //     if (next.tagName === "H3") {
+    //       h3s.push(next);
+    //     }
+    //     next = next.nextSibling;
+    //   }
+    //   return h3s;
+    // },
   },
   watch: {
     enter: function (indexVal, oldVal) {
-      if(indexVal.id){
+      if (indexVal.id) {
         this.getData();
       }
     },

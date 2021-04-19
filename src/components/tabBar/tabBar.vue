@@ -1,9 +1,9 @@
 <template>
   <header class="tabbar">
     <div title="点击返回主页">
-      <div class="login">
+      <router-link :to="{ name: 'Home' }" class="login" tag="div">
         <span>赵小赵Blog</span>
-      </div>
+      </router-link>
     </div>
     <div class="nav-bar">
       <ul class="bar-list">
@@ -11,6 +11,7 @@
           v-for="(item, index) in navBar"
           :key="index"
           :class="{ 'li-active': activeIndex === index }"
+          @click="goRouter(item.pathName, item.index, item.isList)"
         >
           <dropDown
             v-if="item.isList"
@@ -18,9 +19,7 @@
             :list="item.list"
             @ghIndex="ghIndex"
           />
-          <span v-else @click="goRouter(item.pathName, item.index)">{{
-            item.title
-          }}</span>
+          <span v-else>{{ item.title }}</span>
         </li>
       </ul>
     </div>
@@ -96,9 +95,11 @@ export default {
     };
   },
   methods: {
-    goRouter(name, index) {
-      this.activeIndex = index;
-      this.$router.push({ name });
+    goRouter(name, index, bom) {
+      if (!bom) {
+        this.activeIndex = index;
+        this.$router.push({ name });
+      }
     },
     ghIndex(index) {
       this.activeIndex = index;

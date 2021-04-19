@@ -71,7 +71,6 @@ export default {
       }
       let urlPath = window.location.host + this.$route.path;
       let playMap = new Map();
-      console.log(this.enter);
       playMap.set(
         1,
         `https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=${urlPath}&sharesource=qzone&title=${this.enter.title}&pics=${this.enter.img}&summary=${this.enter.introduction}`

@@ -67,7 +67,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      if (to.params.id !== from.params.id) {
+      if (to.params.id != from.params.id) {
         this.getData();
       }
     },

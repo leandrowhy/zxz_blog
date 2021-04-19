@@ -76,7 +76,7 @@ router.beforeEach((to, from, next) => {
       type: "warning",
     });
   }
-  if (to.params.id !== from.params.id) {
+  if (to.params.id != from.params.id) {
     NProgress.start();
     // NProgress.inc();
     store.commit("setIsShow", false);
