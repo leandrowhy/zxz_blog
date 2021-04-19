@@ -17,3 +17,6 @@ export const addArticleViews = (p) => get("/add_article_views", p);
 
 //文章搜索
 export const getSearch = (p) => get("/get_search", p);
+
+//获取图片
+export const getAllPicture = (p) => get("/get_all_picture", p);

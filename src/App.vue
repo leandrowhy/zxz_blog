@@ -1,25 +1,37 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ scoll: showViewer }">
     <tab-bar />
+    <!-- 内容 -->
     <router-view class="animated fadeIn" v-show="isShow" />
+    <!-- 数据加载 过渡页 -->
     <div class="mask fadeOut" v-show="!isShow"></div>
+    <!-- 返回顶部 -->
     <div
       title="点击返回顶部"
       class="back-top"
       :style="{ transform: `translateY(${moveHeight})` }"
       @click="goTop"
     ></div>
+    <!-- 图片查看器 -->
+    <el-image-viewer
+      v-if="showViewer"
+      :on-close="closeViewer"
+      :url-list="urlList"
+      :zIndex="2000"
+    />
   </div>
 </template>
 
 <script>
 import tabBar from "./components/tabBar/tabBar";
-
+// 导入组件
+import ElImageViewer from "element-ui/packages/image/src/image-viewer";
 //节流函数
 import fnThrottle from "@/tools/fnThrottle";
 export default {
   components: {
     tabBar,
+    ElImageViewer,
   },
   name: "App",
   computed: {
@@ -30,6 +42,9 @@ export default {
   data() {
     return {
       moveHeight: "-100%",
+      showViewer: false, // 显示查看器
+      urlList: [],
+      scrollHeight: 0,
     };
   },
   created() {
@@ -37,8 +52,21 @@ export default {
   },
   mounted() {
     this.listenerFunction();
+    this.$bus.$on("onPreview", this.onPreview);
   },
   methods: {
+    // 关闭查看器
+    closeViewer() {
+      this.showViewer = false;
+      setTimeout(() => {
+        document.documentElement.scrollTop = this.scrollHeight;
+      }, 1);
+    },
+    onPreview(bom, list) {
+      this.scrollHeight = this.getScrollTop();
+      this.showViewer = bom;
+      this.urlList = list;
+    },
     // 回到顶部
     goTop() {
       document.getElementsByClassName("studymain-shell")[0]
@@ -96,5 +124,9 @@ export default {
 }
 .details {
   overflow: hidden;
+}
+.scoll {
+  overflow: hidden;
+  height: 100vh;
 }
 </style>

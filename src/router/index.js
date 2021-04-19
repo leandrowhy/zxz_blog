@@ -30,9 +30,6 @@ const routes = [
     path: "/picture",
     name: "Picture",
     component: () => import("../views/Picture/Picture.vue"),
-    meta: {
-      perfect: true,
-    },
   },
   {
     path: "/about",
