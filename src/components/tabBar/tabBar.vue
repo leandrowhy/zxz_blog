@@ -21,6 +21,34 @@
           />
           <span v-else>{{ item.title }}</span>
         </li>
+        <!-- 已登录路由 -->
+        <li
+          v-if="isLogin"
+          :class="{ 'li-active': activeIndex === 4 }"
+          @click="goRouter(user.pathName, user.index, user.isList)"
+        >
+          <dropDown
+            v-if="user.isList"
+            :title="user.title"
+            :list="user.list"
+            @ghIndex="ghIndex"
+          />
+          <span v-else>{{ user.title }}</span>
+        </li>
+        <!-- 未登录路由 -->
+        <li
+          v-else
+          :class="{ 'li-active': activeIndex === 4 }"
+          @click="goRouter(noLogin.pathName, noLogin.index, noLogin.isList)"
+        >
+          <dropDown
+            v-if="noLogin.isList"
+            :title="noLogin.title"
+            :list="noLogin.list"
+            @ghIndex="ghIndex"
+          />
+          <span v-else>{{ noLogin.title }}</span>
+        </li>
       </ul>
     </div>
   </header>
@@ -36,6 +64,7 @@ export default {
   data() {
     return {
       activeIndex: 0,
+      // 通用路由
       navBar: [
         {
           index: 0,
@@ -85,13 +114,27 @@ export default {
             },
           ],
         },
-        {
-          index: 4,
-          pathName: "Login",
-          title: "登陆",
-          isList: false,
-        },
       ],
+      isLogin: false,
+      // 登陆之后的路由
+      user: {
+        index: 4,
+        title: "用户",
+        pathName: "User",
+        isList: true,
+        list: [
+          { index: 4, pathName: "UserHome", title: "主页" },
+          { index: 4, pathName: "Profile", title: "个人信息" },
+          { index: 4, pathName: "Fav", title: "收藏" },
+        ],
+      },
+      // 未登录的路由
+      noLogin: {
+        index: 4,
+        title: "登陆",
+        pathName: "Login",
+        isList: false,
+      },
     };
   },
   methods: {
@@ -103,6 +146,11 @@ export default {
     },
     ghIndex(index) {
       this.activeIndex = index;
+    },
+  },
+  watch: {
+    $route(to) {
+      this.activeIndex = to.meta.index;
     },
   },
 };

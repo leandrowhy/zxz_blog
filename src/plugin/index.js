@@ -14,7 +14,10 @@ import {
   Input,
   Col,
   Autocomplete,
+  Steps,
+  Step
 } from "element-ui";
+
 Vue.use(Autocomplete);
 Vue.use(Col);
 Vue.use(Input);
@@ -26,5 +29,8 @@ Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Carousel);
 Vue.use(CarouselItem);
+Vue.use(Steps);
+Vue.use(Step);
+
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;

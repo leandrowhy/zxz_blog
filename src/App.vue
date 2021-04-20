@@ -103,7 +103,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url("//at.alicdn.com/t/font_2294844_97n5p59fg74.css");
+@import url("//at.alicdn.com/t/font_2294844_ca313iqx92.css");
 @import "./assets/css/highlight.min.css";
 @import "./assets/css/markdown.scss";
 

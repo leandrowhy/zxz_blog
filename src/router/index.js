@@ -10,26 +10,41 @@ const routes = [
     path: "/",
     name: "Home",
     component: () => import("../views/Home/Home.vue"),
+    meta: {
+      index: 0,
+    },
   },
   {
     path: "/music",
     name: "Music",
     component: () => import("../views/Music/Music.vue"),
+    meta: {
+      index: 2,
+    },
   },
   {
     path: "/essay",
     name: "Essay",
     component: () => import("../views/Essay/Essay.vue"),
+    meta: {
+      index: 1,
+    },
   },
   {
     path: "/study/details/:id",
     name: "Studydetails",
     component: () => import("../views/Studydetails/Studydetails.vue"),
+    meta: {
+      index: 1,
+    },
   },
   {
     path: "/picture",
     name: "Picture",
     component: () => import("../views/Picture/Picture.vue"),
+    meta: {
+      index: 1,
+    },
   },
   {
     path: "/about",
@@ -37,6 +52,7 @@ const routes = [
     component: () => import("../views/About/About.vue"),
     meta: {
       perfect: true,
+      index: 3,
     },
   },
   {
@@ -44,7 +60,7 @@ const routes = [
     name: "Login",
     component: () => import("../views/Login/Login.vue"),
     meta: {
-      perfect: true,
+      index: 4,
     },
   },
   {
@@ -53,7 +69,43 @@ const routes = [
     component: () => import("../views/Contact/Contact.vue"),
     meta: {
       perfect: true,
+      index: 3,
     },
+  },
+  {
+    path: "/user",
+    name: "User",
+    component: () => import("../views/User/User.vue"),
+    redirect: "/user/home",
+    meta: {
+      index: 4,
+    },
+    children: [
+      {
+        path: "home",
+        name: "UserHome",
+        component: () => import("../views/User/UserHome.vue"),
+        meta: {
+          index: 4,
+        },
+      },
+      {
+        path: "profile",
+        name: "Profile",
+        component: () => import("../views/User/UserProfile.vue"),
+        meta: {
+          index: 4,
+        },
+      },
+      {
+        path: "fav",
+        name: "Fav",
+        component: () => import("../views/User/UserFav.vue"),
+        meta: {
+          index: 4,
+        },
+      },
+    ],
   },
 ];
 
