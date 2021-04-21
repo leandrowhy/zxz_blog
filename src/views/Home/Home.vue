@@ -37,18 +37,7 @@ export default {
   },
   data() {
     return {
-      banner: [
-        {
-          id: 2343,
-          title: "vue学习笔记(六)表单输入绑定",
-          img: "https://api.adicw.cn/uploads/StudyImg/20201107102130.jpg",
-        },
-        {
-          id: 2346,
-          title: "vue-cli中的组件通信",
-          img: "https://api.adicw.cn/uploads/StudyImg/5fc88b943798c.jpg",
-        },
-      ],
+      banner: [],
       aside: [
         {
           id: 2342,

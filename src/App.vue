@@ -51,6 +51,7 @@ export default {
   created() {
     this.$store.dispatch("getArticleHot");
     if (getCookie("USER") != undefined && getCookie("USER") != "") {
+      console.log(getCookie("USER"));
       let user = JSON.parse(getCookie("USER"));
       this.$store.commit("setToken", getCookie("TOKEN"));
       this.$store.commit("setUserInfo", user);

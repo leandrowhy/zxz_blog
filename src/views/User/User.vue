@@ -11,6 +11,9 @@ export default {
   data() {
     return {};
   },
+  created() {
+    this.$show();
+  },
 };
 </script>
  
