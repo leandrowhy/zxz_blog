@@ -48,7 +48,7 @@ export default {
   },
   data() {
     return {
-      hmiState: false, //登陆注册界面切换  true 登陆界面  false 注册界面
+      hmiState: true, //登陆注册界面切换  true 登陆界面  false 注册界面
     };
   },
   mounted() {
