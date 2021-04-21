@@ -20,3 +20,18 @@ export const getSearch = (p) => get("/get_search", p);
 
 //获取图片
 export const getAllPicture = (p) => get("/get_all_picture", p);
+
+// 用户名验证是否已存在
+export const verifyUserName = (p) => post("/users/verify_username", p);
+
+// 用户名验证是否已存在
+export const verifyEmail = (p) => post("/users/verify_email", p);
+
+// 邮箱获取验证码
+export const getMailCode = (p) => post("/users/getMailCode", p);
+
+//注册
+export const register = (p) => post("/users/register", p);
+
+//登陆接口
+export const Login = (p) => post("/users/login", p);

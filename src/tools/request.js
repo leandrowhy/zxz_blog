@@ -1,9 +1,10 @@
 import axios from "axios";
 import { Message } from "element-ui";
+import { getCookie, removeCookie } from "../tools/cookie";
 
 // 环境的切换  开发环境、测试环境和生产环境
 if (process.env.NODE_ENV === "development") {
-  axios.defaults.baseURL = "https://api.clowned.cn/api";
+  axios.defaults.baseURL = "/api";
 } else if (process.env.NODE_ENV === "debug") {
   axios.defaults.baseURL = "https://api.clowned.cn/api";
 } else if (process.env.NODE_ENV === "production") {
@@ -17,14 +18,9 @@ axios.defaults.headers.post["Content-Type"] =
 //http request 拦截器
 axios.interceptors.request.use(
   (config) => {
-    // const token = getCookie('名称');注意使用的时候需要引入cookie方法，推荐js-cookie
-    config.data = JSON.stringify(config.data);
-    config.headers = {
-      "Content-Type": "application/x-www-form-urlencoded",
-    };
-    // if(token){
-    //   config.params = {'token':token}
-    // }
+    //请求携带token
+    const token = getCookie("token") || "";
+    token && (config.headers.token = token);
     return config;
   },
   (error) => {
@@ -92,43 +88,38 @@ axios.interceptors.response.use(
 );
 
 /**
- * 封装get方法
- * @param url
- * @param data
- * @returns {Promise}
+ * get方法，对应get请求
+ * @param {String} url [请求的url地址]
+ * @param {Object} params [请求时携带的参数]
  */
-
-export function get(url, params = {}) {
+export function get(url, params) {
   return new Promise((resolve, reject) => {
     axios
       .get(url, {
         params: params,
       })
-      .then((response) => {
-        resolve(response.data);
+      .then((res) => {
+        resolve(res.data);
       })
       .catch((err) => {
-        reject(err);
+        reject(err.data);
       });
   });
 }
-
 /**
- * 封装post请求
- * @param url
- * @param data
- * @returns {Promise}
+ * post方法，对应post请求
+ * @param {String} url [请求的url地址]
+ * @param {Object} params [请求时携带的参数]
  */
-
-export function post(url, data = {}) {
+export function post(url, params) {
   return new Promise((resolve, reject) => {
-    axios.post(url, data).then(
-      (response) => {
-        resolve(response.data);
-      },
-      (err) => {
-        reject(err);
-      }
-    );
+    axios
+      .post(url, params)
+      .then((res) => {
+        resolve(res.data);
+      })
+      .catch((err) => {
+        reject(err.data);
+      });
   });
 }

@@ -115,11 +115,11 @@ export default {
           ],
         },
       ],
-      isLogin: false,
+      
       // 登陆之后的路由
       user: {
         index: 4,
-        title: "用户",
+        title: "用户中心",
         pathName: "User",
         isList: true,
         list: [
@@ -136,6 +136,11 @@ export default {
         isList: false,
       },
     };
+  },
+  computed: {
+    isLogin() {
+      return this.$store.state.isLogin;
+    },
   },
   methods: {
     goRouter(name, index, bom) {

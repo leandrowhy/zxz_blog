@@ -53,3 +53,10 @@ html {
     transform: rotate(360deg);
   }
 }
+
+.el-dropdown-menu__item{
+  padding: 0;
+}
+.el-dropdown-menu__item span{
+  padding: 0 20px;
+}

@@ -28,6 +28,7 @@ import tabBar from "./components/tabBar/tabBar";
 import ElImageViewer from "element-ui/packages/image/src/image-viewer";
 //节流函数
 import fnThrottle from "@/tools/fnThrottle";
+import { getCookie } from "@/tools/cookie";
 export default {
   components: {
     tabBar,
@@ -49,6 +50,12 @@ export default {
   },
   created() {
     this.$store.dispatch("getArticleHot");
+    if (getCookie("USER") != undefined && getCookie("USER") != "") {
+      let user = JSON.parse(getCookie("USER"));
+      this.$store.commit("setToken", getCookie("TOKEN"));
+      this.$store.commit("setUserInfo", user);
+      this.$store.commit("setIsLogin", true);
+    }
   },
   mounted() {
     this.listenerFunction();

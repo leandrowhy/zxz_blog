@@ -87,6 +87,7 @@ const routes = [
         component: () => import("../views/User/UserHome.vue"),
         meta: {
           index: 4,
+          perfect: true,
         },
       },
       {
@@ -95,6 +96,7 @@ const routes = [
         component: () => import("../views/User/UserProfile.vue"),
         meta: {
           index: 4,
+          perfect: true,
         },
       },
       {
@@ -103,6 +105,7 @@ const routes = [
         component: () => import("../views/User/UserFav.vue"),
         meta: {
           index: 4,
+          perfect: true,
         },
       },
     ],
