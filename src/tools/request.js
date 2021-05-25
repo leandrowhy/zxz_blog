@@ -4,14 +4,14 @@ import { getCookie, removeCookie } from "../tools/cookie";
 
 // 环境的切换  开发环境、测试环境和生产环境
 if (process.env.NODE_ENV === "development") {
-  axios.defaults.baseURL = "/api";
+  axios.defaults.baseURL = "//api.clowned.cn/api";
 } else if (process.env.NODE_ENV === "debug") {
-  axios.defaults.baseURL = "https://api.clowned.cn/api";
+  axios.defaults.baseURL = "//api.clowned.cn/api";
 } else if (process.env.NODE_ENV === "production") {
-  axios.defaults.baseURL = "https://api.clowned.cn/api";
+  axios.defaults.baseURL = "//api.clowned.cn/api";
 }
 // 设置默认的请求超时时间。例如超过了10s，就会告知用户当前请求超时，请刷新等。
-axios.defaults.timeout = 10000;
+// axios.defaults.timeout = 10000;
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded;charset=UTF-8;multipart/form-data";
 

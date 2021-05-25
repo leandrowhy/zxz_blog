@@ -112,8 +112,8 @@ export default {
 
 <style lang="scss">
 @import url("//at.alicdn.com/t/font_2294844_ca313iqx92.css");
-@import "./assets/css/highlight.min.css";
-@import "./assets/css/markdown.scss";
+@import "./assets/css/github-markdown.css";
+@import "./assets/css/highlight.css";
 
 .back-top {
   position: fixed;

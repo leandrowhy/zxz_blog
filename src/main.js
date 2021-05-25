@@ -11,7 +11,6 @@ import "./assets/css/base.css";
 //css公共样式
 import "./assets/css/common.css";
 
-
 //bus总线
 Vue.prototype.$bus = new Vue();
 
@@ -19,8 +18,8 @@ import VueLazyload from "vue-lazyload";
 
 //vue图片懒加载
 Vue.use(VueLazyload, {
-  loading: require("./assets/lazy/loding.gif"), //加载中图片，一定要有，不然会一直重复加载占位图
-  error: require("./assets/lazy/erro.jpg"), //加载失败图片
+  // loading: require("./assets/lazy/loding.gif"), //加载中图片，一定要有，不然会一直重复加载占位图
+  // error: require("./assets/lazy/erro.jpg"), //加载失败图片
 });
 
 import infiniteScroll from "vue-infinite-scroll";
@@ -41,8 +40,8 @@ NProgress.configure({
 });
 
 Vue.prototype.$show = function() {
+  NProgress.done(true);
   setTimeout(() => {
-    NProgress.done(true);
     store.commit("setIsShow", true);
   }, 800);
 };

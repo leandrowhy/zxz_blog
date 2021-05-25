@@ -54,9 +54,35 @@ html {
   }
 }
 
-.el-dropdown-menu__item{
+.el-dropdown-menu__item {
   padding: 0;
 }
-.el-dropdown-menu__item span{
+.el-dropdown-menu__item span {
   padding: 0 20px;
+}
+
+/* 图片懒加载 */
+img[lazy="loading"] {
+  height: 300px;
+  border: 1px solid #ffffff;
+  animation: gray-twinkle 1s infinite alternate;
+}
+img[lazy="error"] {
+  height: 300px;
+  border: 1px solid #ffffff;
+  background: #e2e2e2;
+}
+/* img[lazy="loaded"] {
+} */
+
+@keyframes gray-twinkle {
+  0% {
+    background: #f4f8fc;
+  }
+  50% {
+    background: #f5faff;
+  }
+  100% {
+    background: #e5f2ff;
+  }
 }
