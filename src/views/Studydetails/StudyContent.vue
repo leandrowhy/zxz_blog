@@ -22,9 +22,9 @@
         >版权声明：本文为博主原创文章，转载请说明来源</em
       >
       <em v-else
-        >版权声明：本文为转载，
+        >版权声明：非原创，转载地址：
         <a :href="enter.reprint" target="_blank" rel="noopener noreferrer"
-          >点击进入原文</a
+          >{{enter.reprint}}</a
         ></em
       >
       <hr />

@@ -14,6 +14,8 @@
 
 2021-05-25 优化了懒加载和Markdown样式
 
+2021-05-26 修复了文章目录过多无法显示的bug
+
 技术栈
 
 前端：SASS/Es6/Vue/Vue-Router/Vuex/Element

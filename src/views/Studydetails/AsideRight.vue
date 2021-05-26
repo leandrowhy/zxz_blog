@@ -46,18 +46,9 @@ export default {
     dateTime() {
       if (this.valDate != null) {
         let date = new Date(this.valDate);
-        let hour = date
-          .getHours()
-          .toString()
-          .padStart(2, "0");
-        let minute = date
-          .getMinutes()
-          .toString()
-          .padStart(2, "0");
-        let second = date
-          .getSeconds()
-          .toString()
-          .padStart(2, "0");
+        let hour = date.getHours().toString().padStart(2, "0");
+        let minute = date.getMinutes().toString().padStart(2, "0");
+        let second = date.getSeconds().toString().padStart(2, "0");
 
         return hour + " : " + minute + " : " + second;
       }
@@ -110,20 +101,28 @@ html {
     .section-link {
       padding-left: 5px;
       margin: 6px 0;
-      padding: 4px 0 4px 21px;
+      padding: 4px 0 4px 4px;
       display: block;
       position: relative;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
       color: #000;
       &:hover {
         color: #007fff;
         background-color: #ebedef;
       }
     }
+  }
+}
+.md-list {
+  min-height: 200px;
+  max-height: 500px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
   }
 }
 </style>
