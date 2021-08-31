@@ -1,3 +1,12 @@
+/*
+ * @Description: 
+ * @Author: leandrowhy
+ * @Date: 2020-12-25 15:08:09
+ * @LastEditTime: 2021-08-30 17:22:38
+ * @LastEditors: leandrowhy
+ * @FilePath: \front-end\src\plugin\index.js
+ * 希望此代码无bug~
+ */
 import Vue from "vue";
 import "element-ui/lib/theme-chalk/index.css";
 import {
@@ -15,7 +24,8 @@ import {
   Col,
   Autocomplete,
   Steps,
-  Step
+  Step,
+  Scrollbar
 } from "element-ui";
 
 Vue.use(Autocomplete);
@@ -31,6 +41,7 @@ Vue.use(Carousel);
 Vue.use(CarouselItem);
 Vue.use(Steps);
 Vue.use(Step);
+Vue.use(Scrollbar);
 
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;

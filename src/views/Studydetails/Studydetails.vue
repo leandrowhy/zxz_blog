@@ -4,11 +4,13 @@
       <img class="bg-img" v-lazy="enter.img" />
     </div>
     <div class="study-main">
-      <div class="studymain-shell" ref="docbox">
-        <aside class="bot-left"><AsideLeft :enter="enter" /></aside>
-        <div class="bot-content"><StudyContent :enter="enter" /></div>
-        <div class="bot-right"><AsideRight :bgimg="enter.img" /></div>
-      </div>
+      <!-- <el-scrollbar style="height: 100vh" ref="docbox"> -->
+        <div class="studymain-shell">
+          <aside class="bot-left"><AsideLeft :enter="enter" /></aside>
+          <div class="bot-content"><StudyContent :enter="enter" /></div>
+          <div class="bot-right"><AsideRight :bgimg="enter.img" /></div>
+        </div>
+      <!-- </el-scrollbar> -->
     </div>
   </div>
 </template>
@@ -41,7 +43,7 @@ export default {
     this.getData();
   },
   mounted() {
-    this.listenerFunction();
+    // this.handleScroll();
   },
   methods: {
     // 获取数据
@@ -53,14 +55,19 @@ export default {
       });
     },
     listenerFunction() {
-      this.$refs.docbox.addEventListener("scroll", this.handleScroll, true);
+      // setTimeout(() => {
+      //   console.log(this.$refs.docbox.wrap.scrollTop);
+      // }, 2000);
+      // this.$refs.docbox.addEventListener("scroll", this.handleScroll, true);
     },
     handleScroll() {
-      let that = this;
       let backTop = document.getElementsByClassName("back-top")[0];
-      fnThrottle(fnContnt(backTop), 300);
+      let scrollbarEl = this.$refs.docbox.wrap;
+      scrollbarEl.onscroll = () => {
+        fnThrottle(fnContnt(backTop), 300);
+      };
       function fnContnt(backTop) {
-        let moveHeight = that.$refs.docbox.scrollTop > 400 ? "0%" : "-100%";
+        let moveHeight = scrollbarEl.scrollTop > 400 ? "0%" : "-100%";
         backTop.style.transform = `translateY(${moveHeight})`;
       }
     },
@@ -73,7 +80,7 @@ export default {
     },
   },
   beforeDestroy() {
-    this.$refs.docbox.removeEventListener("scroll", this.listenerFunction);
+    // this.$refs.docbox.removeEventListener("scroll", this.listenerFunction);
   },
 };
 </script>
@@ -107,15 +114,15 @@ export default {
   }
 }
 .study-main {
-  height: calc(100vh - 70px);
-  overflow: hidden;
+  // height: calc(100vh - 70px);
+  // overflow: hidden;
 }
 .studymain-shell {
-  height: 100%;
+  // height: 100%;
   display: flex;
-  overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  // scroll-behavior: smooth;
 }
 .bot-left {
   position: sticky;

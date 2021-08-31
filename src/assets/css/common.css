@@ -62,12 +62,12 @@ html {
 }
 
 /* 图片懒加载 */
-img[lazy="loading"] {
+img[lazy='loading'] {
   height: 300px;
   border: 1px solid #ffffff;
   animation: gray-twinkle 1s infinite alternate;
 }
-img[lazy="error"] {
+img[lazy='error'] {
   height: 300px;
   border: 1px solid #ffffff;
   background: #e2e2e2;
@@ -85,4 +85,21 @@ img[lazy="error"] {
   100% {
     background: #e5f2ff;
   }
+}
+
+/* 滚动条 */
+.el-scrollbar__bar.is-vertical {
+  z-index: 3000;
+  width: 8px;
+  scroll-behavior: smooth;
+
+}
+.el-scrollbar__thumb{
+  background-color: rgba(144,147,153,.5)
+}
+.el-scrollbar__thumb:hover{
+  background-color: rgba(144,147,153,.8)
+}
+.el-scrollbar__wrap {
+  overflow-x: hidden;
 }
