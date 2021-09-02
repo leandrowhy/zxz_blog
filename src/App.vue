@@ -62,7 +62,6 @@ export default {
     }
   },
   mounted() {
-    // this.listenerFunction();
     this.handleScroll();
     this.$bus.$on("onPreview", this.onPreview);
   },
@@ -75,16 +74,27 @@ export default {
       }, 1);
     },
     onPreview(bom, list) {
-      // this.scrollHeight = this.getScrollTop();
       this.showViewer = bom;
       this.urlList = list;
     },
     // 回到顶部
     goTop() {
-      this.$refs.docbox.wrap.scrollTop = 0;
-      // document.getElementsByClassName("el-scrollbar__view")[0]
-      //   ? (document.getElementsByClassName("el-scrollbar__view")[0].scrollTop = 0)
-      //   : (document.documentElement.scrollTop = 0);
+      let currentPosition, timer;
+      let _this = this;
+      let secondsAre = _this.$refs.docbox.wrap.scrollTop / 100;
+      //设置最小值
+      secondsAre = secondsAre < 50 ? 50 : secondsAre;
+      console.log(secondsAre);
+      timer = setInterval(function () {
+        currentPosition = _this.$refs.docbox.wrap.scrollTop;
+        currentPosition -= secondsAre;
+        if (currentPosition > 0) {
+          _this.$refs.docbox.wrap.scrollTop = currentPosition;
+        } else {
+          _this.$refs.docbox.wrap.scrollTop = 0;
+          clearInterval(timer);
+        }
+      }, 10);
     },
     handleScroll() {
       let backTop = document.getElementsByClassName("back-top")[0];
@@ -97,31 +107,6 @@ export default {
         backTop.style.transform = `translateY(${moveHeight})`;
       }
     },
-    // //监听滚动时间
-    // listenerFunction(e) {
-    //   document.addEventListener("scroll", this.handleScroll, true);
-    // },
-    // //处理返回顶部div 是否显示
-    // handleScroll() {
-    //   let that = this;
-    //   fnThrottle(fnContnt(), 300);
-    //   function fnContnt() {
-    //     that.moveHeight = that.getScrollTop() > 400 ? "0%" : "-100%";
-    //   }
-    // },
-    // //获取滚动条高度
-    // getScrollTop() {
-    //   let scroll_top = 0;
-    //   if (document.documentElement && document.documentElement.scrollTop) {
-    //     scroll_top = document.documentElement.scrollTop;
-    //   } else if (document.body) {
-    //     scroll_top = document.body.scrollTop;
-    //   }
-    //   return scroll_top;
-    // },
-  },
-  beforeDestroy() {
-    document.removeEventListener("scroll", this.listenerFunction);
   },
 };
 </script>
