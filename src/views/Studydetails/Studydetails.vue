@@ -42,9 +42,6 @@ export default {
   created() {
     this.getData();
   },
-  mounted() {
-    // this.handleScroll();
-  },
   methods: {
     // 获取数据
     getData() {
@@ -53,12 +50,6 @@ export default {
         this.enter = res.data.content;
         this.$show();
       });
-    },
-    listenerFunction() {
-      // setTimeout(() => {
-      //   console.log(this.$refs.docbox.wrap.scrollTop);
-      // }, 2000);
-      // this.$refs.docbox.addEventListener("scroll", this.handleScroll, true);
     },
     handleScroll() {
       let backTop = document.getElementsByClassName("back-top")[0];
@@ -78,9 +69,6 @@ export default {
         this.getData();
       }
     },
-  },
-  beforeDestroy() {
-    // this.$refs.docbox.removeEventListener("scroll", this.listenerFunction);
   },
 };
 </script>
@@ -113,16 +101,8 @@ export default {
     height: 100%;
   }
 }
-.study-main {
-  // height: calc(100vh - 70px);
-  // overflow: hidden;
-}
 .studymain-shell {
-  // height: 100%;
   display: flex;
-  // overflow-x: hidden;
-  // overflow-y: auto;
-  // scroll-behavior: smooth;
 }
 .bot-left {
   position: sticky;
