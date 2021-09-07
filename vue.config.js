@@ -2,7 +2,7 @@
  * @Description:
  * @Author: leandrowhy
  * @Date: 2020-12-25 16:59:31
- * @LastEditTime: 2021-08-30 17:08:22
+ * @LastEditTime: 2021-09-06 15:47:44
  * @LastEditors: leandrowhy
  * @FilePath: \front-end\vue.config.js
  * 希望此代码无bug~
@@ -16,6 +16,7 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.alias.set('@', resolve('src'));
   },
+  productionSourceMap: false, // 是否需要生产环境的 source map（减小dist文件大小，加速构建）
   devServer: {
     proxy: {
       '/api': {
