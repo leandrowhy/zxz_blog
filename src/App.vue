@@ -84,7 +84,7 @@ export default {
       let secondsAre = _this.$refs.docbox.wrap.scrollTop / 100;
       //设置最小值
       secondsAre = secondsAre < 50 ? 50 : secondsAre;
-      timer = setInterval(function () {
+      timer = setInterval(function() {
         currentPosition = _this.$refs.docbox.wrap.scrollTop;
         currentPosition -= secondsAre;
         if (currentPosition > 0) {
