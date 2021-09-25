@@ -1,3 +1,12 @@
+<!--
+ * @Description: 
+ * @Author: leandrowhy
+ * @Date: 2021-04-16 22:34:46
+ * @LastEditTime: 2021-09-07 10:53:27
+ * @LastEditors: leandrowhy
+ * @FilePath: \front-end\src\views\Studydetails\AsideLeft.vue
+ * 希望此代码无bug~
+-->
 <template>
   <div class="left">
     <homeAside class="aside" :isShow="false" :isGreen="true" />
@@ -52,6 +61,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    goUrl(url) {
+      window.open(url, "_blank");
+    },
   },
 };
 </script>

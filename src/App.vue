@@ -1,6 +1,6 @@
 <template>
   <el-scrollbar style="height: 100vh" ref="docbox">
-    <div id="app" :class="{ scoll: showViewer }">
+    <div id="app">
       <tab-bar />
       <!-- 内容 -->
       <router-view class="animated fadeIn" v-show="isShow" />
@@ -84,7 +84,6 @@ export default {
       let secondsAre = _this.$refs.docbox.wrap.scrollTop / 100;
       //设置最小值
       secondsAre = secondsAre < 50 ? 50 : secondsAre;
-      console.log(secondsAre);
       timer = setInterval(function () {
         currentPosition = _this.$refs.docbox.wrap.scrollTop;
         currentPosition -= secondsAre;

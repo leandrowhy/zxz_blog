@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     getData() {
-      getArticle({ pageNumber: 1, pageSize: 3 }).then((res) => {
+      getArticle({ pageNumber: 1, pageSize: 4 }).then((res) => {
         this.banner = res.data.content;
         this.$show();
       });

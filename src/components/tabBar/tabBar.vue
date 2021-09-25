@@ -1,10 +1,10 @@
 <template>
   <header class="tabbar">
-    <div title="点击返回主页">
-      <router-link :to="{ name: 'Home' }" class="login" tag="div">
-        <span>赵小赵Blog</span>
+    <template>
+      <router-link :to="{ name: 'Home' }" class="logo" tag="div">
+        <span title="点击返回主页">赵小赵Blog</span>
       </router-link>
-    </div>
+    </template>
     <div class="nav-bar">
       <ul class="bar-list">
         <li
@@ -115,7 +115,7 @@ export default {
           ],
         },
       ],
-      
+
       // 登陆之后的路由
       user: {
         index: 4,
@@ -178,13 +178,16 @@ export default {
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   position: sticky;
   top: 0;
-  .login {
+  .logo {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 70px;
     font-size: 26px;
-    cursor: pointer;
+    span {
+      cursor: pointer;
+      padding: 12px;
+    }
   }
   .bar-list {
     box-sizing: border-box;

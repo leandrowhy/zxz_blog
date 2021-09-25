@@ -16,11 +16,11 @@
           <p class="tj">
             <i class="el-icon-caret-right" style="color: red"></i> 推荐文章
           </p>
-          <p class="title">{{ item.title }}</p>
-          <span class="btn-right" @click="goRouter(item.id)">READ MORE</span>
+          <p class="title" :title="item.title">{{ item.title }}</p>
+          <span class="btn-right" @click="goRouter(item.id)" title="文章详情">READ MORE</span>
           <div class="tag-bot">
             <div class="el-icon-collection-tag">
-              |<span class="hash" @click="next(index)">Next</span>
+              |<span class="hash" @click="next(index)" title="next 下一篇">Next</span>
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@ export default {
   bottom: 15%;
   color: #ffffff;
   width: 35%;
-  height: 260px;
+  height: 270px;
   padding: 16px;
   overflow: hidden;
   z-index: 100;
@@ -194,6 +194,10 @@ export default {
     font-size: 36px;
     line-height: 54px;
     text-align: justify;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
   .tag-bot {
     & .el-icon-collection-tag {
