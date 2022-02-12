@@ -13,10 +13,14 @@
     <div class="card-footer">
       <ul class="lg-cont">
         <li>
-          <i class="iconfont icon-rili"></i>{{ item.date | timeTransformation }}
+          <i class="iconfont icon-rili"></i>
+          {{ item.date | timeTransformation }}
         </li>
         <!-- <li><i class="iconfont icon-pinglun"></i>{{ item.plcont }}条评论</li> -->
-        <li><i class="iconfont icon-fangwen"></i>{{ item.views }}次阅读</li>
+        <li>
+          <i class="iconfont icon-fangwen"></i>
+          {{ item.views }}次阅读
+        </li>
       </ul>
       <span class="jump">
         阅读全文
@@ -28,35 +32,35 @@
 
 <script>
 export default {
-  name: "ContentItem",
+  name: 'ContentItem',
   props: {
     item: {
       type: Object,
       default() {
-        return {};
-      },
-    },
+        return {}
+      }
+    }
   },
   filters: {
     timeTransformation(inputTime) {
-      let date = new Date(inputTime);
-      let y = date.getFullYear();
-      let m = date.getMonth() + 1;
-      m = m < 10 ? "0" + m : m;
-      let d = date.getDate();
-      d = d < 10 ? "0" + d : d;
-      return y + "-" + m + "-" + d;
-    },
+      let date = new Date(inputTime)
+      let y = date.getFullYear()
+      let m = date.getMonth() + 1
+      m = m < 10 ? '0' + m : m
+      let d = date.getDate()
+      d = d < 10 ? '0' + d : d
+      return y + '-' + m + '-' + d
+    }
   },
   data() {
-    return {};
+    return {}
   },
   methods: {
     goRouter(id) {
-      this.$router.push({ name: "Studydetails", params: { id } });
-    },
-  },
-};
+      this.$router.push({ name: 'Studydetails', params: { id } })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -99,7 +103,7 @@ export default {
   }
   .bot-title {
     position: absolute;
-    top: 40%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%);
     z-index: 2;
@@ -109,6 +113,7 @@ export default {
     opacity: 1;
     transition: all 0.3s;
     min-width: 550px;
+    line-height: 40px;
     .label {
       display: flex;
       align-items: center;
