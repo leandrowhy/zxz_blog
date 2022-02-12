@@ -1,9 +1,14 @@
+<!--
+ * @Author: leandrowhy
+ * @Date: 2022-02-12 10:11:00
+ * @Description: file content
+-->
 <template>
   <div class="music">
     <div
       class="bg-img"
       :style="{
-        'background-image': `url('https://p2.music.126.net/iYRj0og9f3jD8rjGSRn2aA==/109951164679229248.jpg')`,
+        'background-image': `url('https://p2.music.126.net/iYRj0og9f3jD8rjGSRn2aA==/109951164679229248.jpg')`
       }"
     ></div>
     <musicPlay />
@@ -11,16 +16,19 @@
 </template>
 
 <script>
-import musicPlay from "@/views/Music/musicPlay";
+import musicPlay from '@/views/Music/musicPlay'
 export default {
-  name: "Music",
+  name: 'Music',
   components: {
-    musicPlay,
+    musicPlay
   },
   data() {
-    return {};
+    return {}
   },
-};
+  mounted() {
+    this.$show()
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -39,7 +47,7 @@ export default {
     filter: blur(40px);
     z-index: -2;
     &::before {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       inset: 0;

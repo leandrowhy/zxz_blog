@@ -2,13 +2,13 @@
  * @Description: 
  * @Author: leandrowhy
  * @Date: 2021-04-16 22:34:46
- * @LastEditTime: 2021-09-07 10:53:27
- * @LastEditors: leandrowhy
+ * @LastEditTime: 2022-02-12 10:40:31
+ * @LastEditors: Please set LastEditors
  * @FilePath: \front-end\src\views\Studydetails\AsideLeft.vue
  * 希望此代码无bug~
 -->
 <template>
-  <div class="left">
+  <div class="left aside-left-nav">
     <homeAside class="aside" :isShow="false" :isGreen="true" />
     <titleBox title="活跃平台" isGreen :class="['mrtop']">
       <ul slot="content" class="active-main">
@@ -28,46 +28,46 @@
 </template>
 
 <script>
-import homeAside from "@/views/Home/homeAside";
-import titleBox from "@/components/titleBox";
-import AsideShare from "@/views/Studydetails/AsideShare";
+import homeAside from '@/views/Home/homeAside'
+import titleBox from '@/components/titleBox'
+import AsideShare from '@/views/Studydetails/AsideShare'
 export default {
-  name: "AsideLeft",
+  name: 'AsideLeft',
   components: {
     homeAside,
     AsideShare,
-    titleBox,
+    titleBox
   },
   props: {
     enter: {
       type: Object,
       default() {
-        return {};
-      },
-    },
+        return {}
+      }
+    }
   },
   data() {
     return {
       activeList: [
         {
-          name: "GitHub",
-          pathUrl: "https://github.com/leandrowhy",
-          class: ["iconfont", "icon-github"],
+          name: 'GitHub',
+          pathUrl: 'https://github.com/leandrowhy',
+          class: ['iconfont', 'icon-github']
         },
         {
-          name: "bilibili",
-          pathUrl: "https://space.bilibili.com/39710083",
-          class: ["iconfont", "icon-bilibili-line"],
-        },
-      ],
-    };
+          name: 'bilibili',
+          pathUrl: 'https://space.bilibili.com/39710083',
+          class: ['iconfont', 'icon-bilibili-line']
+        }
+      ]
+    }
   },
   methods: {
     goUrl(url) {
-      window.open(url, "_blank");
-    },
-  },
-};
+      window.open(url, '_blank')
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

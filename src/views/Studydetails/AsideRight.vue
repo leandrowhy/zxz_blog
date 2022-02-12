@@ -1,9 +1,6 @@
 <template>
-  <div class="right">
-    <div
-      class="clock"
-      :style="{ background: `url(${bgimg})`, 'background-size': 'cover' }"
-    >
+  <div class="right aside-right-nav">
+    <div class="clock" :style="{ background: `url(${bgimg})`, 'background-size': 'cover' }">
       <div class="clockanm">
         <span class="time">{{ dateTime }}</span>
       </div>
@@ -17,50 +14,51 @@
 </template>
 
 <script>
-import copyright from "@/components/copyright";
+import copyright from '@/components/copyright'
 export default {
-  name: "AsideRight",
+  name: 'AsideRight',
   components: {
-    copyright,
+    copyright
   },
   props: {
     bgimg: {
-      type: String,
-    },
+      type: String
+    }
   },
   data() {
     return {
       valDate: 0,
-      sectionContainer: "",
-    };
+      sectionContainer: ''
+    }
   },
   created() {
     setInterval(() => {
-      this.valDate = new Date();
-    }, 1000);
-    this.$bus.$on("section", (innerStr) => {
-      this.sectionContainer = innerStr;
-    });
+      this.valDate = new Date()
+    }, 1000)
+    this.$bus.$on('section', innerStr => {
+      this.sectionContainer = innerStr
+    })
   },
   computed: {
     dateTime() {
       if (this.valDate != null) {
-        let date = new Date(this.valDate);
-        let hour = date.getHours().toString().padStart(2, "0");
-        let minute = date.getMinutes().toString().padStart(2, "0");
-        let second = date.getSeconds().toString().padStart(2, "0");
+        let date = new Date(this.valDate)
+        let hour = date.getHours().toString().padStart(2, '0')
+        let minute = date.getMinutes().toString().padStart(2, '0')
+        let second = date.getSeconds().toString().padStart(2, '0')
 
-        return hour + " : " + minute + " : " + second;
+        return hour + ' : ' + minute + ' : ' + second
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
 html {
   scroll-behavior: smooth;
 }
+
 .clock {
   width: 100%;
   height: 130px;

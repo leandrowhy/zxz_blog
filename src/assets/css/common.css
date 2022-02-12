@@ -92,14 +92,29 @@ img[lazy='error'] {
   z-index: 3000;
   width: 8px;
   scroll-behavior: smooth;
-
 }
-.el-scrollbar__thumb{
-  background-color: rgba(144,147,153,.5)
+.el-scrollbar__thumb {
+  background-color: rgba(144, 147, 153, 0.5);
 }
-.el-scrollbar__thumb:hover{
-  background-color: rgba(144,147,153,.8)
+.el-scrollbar__thumb:hover {
+  background-color: rgba(144, 147, 153, 0.8);
 }
 .el-scrollbar__wrap {
   overflow-x: hidden;
+}
+
+.right-sticky .aside-right-nav {
+  position: fixed;
+  top: -60px;
+  width: 260px;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+.left-sticky .aside-left-nav {
+  position: fixed;
+  top: -550px;
+  width: 260px;
+  z-index: 10;
+  transition: all 0.2s;
 }

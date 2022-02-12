@@ -5,72 +5,72 @@
     </div>
     <div class="study-main">
       <!-- <el-scrollbar style="height: 100vh" ref="docbox"> -->
-        <div class="studymain-shell">
-          <aside class="bot-left"><AsideLeft :enter="enter" /></aside>
-          <div class="bot-content"><StudyContent :enter="enter" /></div>
-          <div class="bot-right"><AsideRight :bgimg="enter.img" /></div>
-        </div>
+      <div class="studymain-shell">
+        <aside class="bot-left"><AsideLeft :enter="enter" /></aside>
+        <div class="bot-content"><StudyContent :enter="enter" /></div>
+        <div class="bot-right"><AsideRight :bgimg="enter.img" /></div>
+      </div>
       <!-- </el-scrollbar> -->
     </div>
   </div>
 </template>
 
 <script>
-import AsideLeft from "@/views/Studydetails/AsideLeft";
-import StudyContent from "@/views/Studydetails/StudyContent";
-import AsideRight from "@/views/Studydetails/AsideRight";
+import AsideLeft from '@/views/Studydetails/AsideLeft'
+import StudyContent from '@/views/Studydetails/StudyContent'
+import AsideRight from '@/views/Studydetails/AsideRight'
 //api
-import { getArticleInfo } from "@/api/api";
+import { getArticleInfo } from '@/api/api'
 //节流函数
-import fnThrottle from "@/tools/fnThrottle";
+import fnThrottle from '@/tools/fnThrottle'
 export default {
-  name: "Studydetails",
+  name: 'Studydetails',
   components: {
     AsideLeft,
     StudyContent,
-    AsideRight,
+    AsideRight
   },
   data() {
     return {
-      code: "",
+      code: '',
       id: 0,
       enter: {
-        img: require("../../assets/img/20200204113055.jpg"),
-      },
-    };
+        img: require('../../assets/img/20200204113055.jpg')
+      }
+    }
   },
   created() {
-    this.getData();
+    this.getData()
   },
   methods: {
     // 获取数据
     getData() {
-      let id = (this.id = this.$route.params.id);
-      getArticleInfo({ id }).then((res) => {
-        this.enter = res.data.content;
-        this.$show();
-      });
+      let id = (this.id = this.$route.params.id)
+      getArticleInfo({ id }).then(res => {
+        this.enter = res.data.content
+        this.$show()
+      })
     },
     handleScroll() {
-      let backTop = document.getElementsByClassName("back-top")[0];
-      let scrollbarEl = this.$refs.docbox.wrap;
+      let backTop = document.getElementsByClassName('back-top')[0]
+      let scrollbarEl = this.$refs.docbox.wrap
       scrollbarEl.onscroll = () => {
-        fnThrottle(fnContnt(backTop), 300);
-      };
-      function fnContnt(backTop) {
-        let moveHeight = scrollbarEl.scrollTop > 400 ? "0%" : "-100%";
-        backTop.style.transform = `translateY(${moveHeight})`;
+        fnThrottle(fnContnt(backTop), 300)
       }
-    },
+      function fnContnt(backTop) {
+        let moveHeight = scrollbarEl.scrollTop > 400 ? '0%' : '-100%'
+        backTop.style.transform = `translateY(${moveHeight})`
+      }
+    }
   },
   watch: {
     $route(to, from) {
       if (to.params.id != from.params.id) {
-        this.getData();
+        this.getData()
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -87,7 +87,7 @@ export default {
   height: 100vh;
   &::before {
     background: hsla(0, 0%, 100%, 0.4);
-    content: "";
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
