@@ -2,28 +2,44 @@
   <div class="player">
     <div class="bar">
       <div class="album">
-        <img src="https://api.adicw.cn/uploads/StudyImg/20200929095155.jpg" />
+        <img :src="imgSrc" />
       </div>
       <div class="controls">
         <div class="play-btn prev">
           <i class="iconfont icon-ai-rew-left"></i>
         </div>
-        <div class="play-btn play"><i class="iconfont icon-bofang"></i></div>
+        <div class="play-btn play" @click="play"><i class="iconfont icon-bofang"></i></div>
         <div class="play-btn next">
           <i class="iconfont icon-ai-rew-right"></i>
         </div>
       </div>
     </div>
+    <player :urlSrc="musicUrl" />
   </div>
 </template>
 
 <script>
+import player from '@/views/Music/player'
 export default {
-  name: "musicPlay",
-  data() {
-    return {};
+  name: 'musicPlay',
+  components: {
+    player
   },
-};
+  props: {
+    musicUrl: {
+      type: String
+    },
+    imgSrc: {
+      type: String
+    }
+  },
+  data() {
+    return {}
+  },
+  methods: {
+    play() {}
+  }
+}
 </script>
 
 <style scoped lang="scss">

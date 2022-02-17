@@ -3,7 +3,10 @@
     <div id="app" :class="{ 'right-sticky': rightSticky, 'left-sticky': leftSticky }">
       <tab-bar />
       <!-- 内容 -->
-      <router-view class="animated fadeIn" v-show="isShow" />
+      <keep-alive include="Music">
+        <router-view class="animated fadeIn" v-show="isShow" />
+      </keep-alive>
+
       <!-- 数据加载 过渡页 -->
       <div class="mask fadeOut" v-show="!isShow"></div>
       <!-- 返回顶部 -->

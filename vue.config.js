@@ -2,7 +2,7 @@
  * @Description:
  * @Author: leandrowhy
  * @Date: 2020-12-25 16:59:31
- * @LastEditTime: 2021-12-30 14:53:28
+ * @LastEditTime: 2022-02-15 18:00:32
  * @LastEditors: Please set LastEditors
  * @FilePath: \front-end\vue.config.js
  * 希望此代码无bug~
@@ -26,11 +26,17 @@ module.exports = {
         changeOrigin: true, //开启代理：在本地会创建一个虚拟服务端，然后发送请求的数据，并同时接收请求的数据，这样服务端和服务端进行数据的交互就不会有跨域问题
         pathRewrite: { '^/api': '/api' } //这里重写路径
       },
-      '/qqmusic': {
+      '/qq-music': {
         target: 'http://qqmusic-api.clowned.cn/',
         ws: true,
         changeOrigin: true,
-        pathRewrite: { '^/qqmusic': '/' }
+        pathRewrite: { '^/qq-music': '/' }
+      },
+      '/wy-music': {
+        target: 'http://music-api.clowned.cn/',
+        ws: true,
+        changeOrigin: true,
+        pathRewrite: { '^/wy-music': '/' }
       }
     }
   }
