@@ -2,7 +2,7 @@
  * @Description:
  * @Author: leandrowhy
  * @Date: 2020-12-25 16:59:31
- * @LastEditTime: 2022-02-17 17:34:27
+ * @LastEditTime: 2022-02-18 16:43:08
  * @LastEditors: Please set LastEditors
  * @FilePath: \front-end\vue.config.js
  * 希望此代码无bug~
@@ -30,13 +30,13 @@ module.exports = {
         target: 'http://qqmusic-api.clowned.cn/',
         ws: true,
         changeOrigin: true,
-        pathRewrite: { '^/qq-music': '/qq-music' }
+        pathRewrite: { '^/qq-music': '/' }
       },
       '/wy-music': {
         target: 'http://music-api.clowned.cn/',
         ws: true,
         changeOrigin: true,
-        pathRewrite: { '^/wy-music': '/wy-music' }
+        pathRewrite: { '^/wy-music': '/' }
       }
     }
   }

@@ -3,13 +3,13 @@
     <div class="banner">
       <carousel :banner="banner" />
       <div class="banner-aside">
-        <div class="_block" :title="aside[0].title">
+        <div class="_block" :title="aside[0].title" @click="goImgRouter">
           <div
             class="bg-img _block-bgmove"
             :style="{ 'background-image': `url('${aside[0].img}')` }"
           ></div>
         </div>
-        <div class="_block" :title="aside[1].title">
+        <div class="_block" :title="aside[1].title" @click="goImgRouter">
           <img v-lazy="aside[1].img" />
         </div>
       </div>
@@ -22,18 +22,18 @@
   </div>
 </template>
 <script>
-import carousel from "@/components/carousel/carousel";
-import homeAside from "@/views/Home/homeAside";
-import homeAsideRight from "@/views/Home/homeAsideRight";
-import HomeAsideCenter from "@/views/Home/HomeAsideCenter";
-import { getArticle, getHomeInfo } from "@/api/api";
+import carousel from '@/components/carousel/carousel'
+import homeAside from '@/views/Home/homeAside'
+import homeAsideRight from '@/views/Home/homeAsideRight'
+import HomeAsideCenter from '@/views/Home/HomeAsideCenter'
+import { getArticle, getHomeInfo } from '@/api/api'
 export default {
-  name: "Home",
+  name: 'Home',
   components: {
     carousel,
     homeAside,
     homeAsideRight,
-    HomeAsideCenter,
+    HomeAsideCenter
   },
   data() {
     return {
@@ -41,33 +41,36 @@ export default {
       aside: [
         {
           id: 2342,
-          title: "前往图片区",
-          img: require("@/assets/img/20200805053247.jpg"),
+          title: '前往图片区',
+          img: require('@/assets/img/20200805053247.jpg')
         },
         {
           id: 2342,
-          title: "前往图片区",
-          img: require("@/assets/img/5fb1f290df867.jpg"),
-        },
+          title: '前往图片区',
+          img: require('@/assets/img/5fb1f290df867.jpg')
+        }
       ],
-      homeInfo: [],
-    };
+      homeInfo: []
+    }
   },
   created() {
-    this.getData();
+    this.getData()
   },
   methods: {
-    getData() {
-      getArticle({ pageNumber: 1, pageSize: 4 }).then((res) => {
-        this.banner = res.data.content;
-        this.$show();
-      });
-      getHomeInfo().then((res) => {
-        this.homeInfo = res.data;
-      });
+    goImgRouter() {
+      this.$router.push({ name: 'Picture' })
     },
-  },
-};
+    getData() {
+      getArticle({ pageNumber: 1, pageSize: 4 }).then(res => {
+        this.banner = res.data.content
+        this.$show()
+      })
+      getHomeInfo().then(res => {
+        this.homeInfo = res.data
+      })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

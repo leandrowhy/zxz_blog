@@ -18,8 +18,8 @@
         <div class="search-sort">
           <el-dropdown @command="handleCommand">
             <span class="el-dropdown-link">
-              {{ sortBom == 1 ? "浏览量" : "发布时间"
-              }}<i class="el-icon-arrow-down el-icon--right"></i>
+              {{ sortBom == 1 ? '浏览量' : '发布时间' }}
+              <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="0">发布时间</el-dropdown-item>
@@ -43,77 +43,72 @@
 </template>
 
 <script>
-import { debounce } from "@/tools/utils";
+import { debounce } from '@/tools/utils'
 export default {
   props: {
     articcle: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   data() {
     return {
-      state: "",
+      state: '',
       sortBom: 0,
-      cata: ["ALL", "前端", "后端"],
+      cata: ['ALL', '前端', '后端'],
       activeIndex: 0,
-      activeCata: "ALL",
-    };
+      activeCata: 'ALL'
+    }
   },
   computed: {
     restaurants() {
-      return this.articcle;
-    },
+      return this.articcle
+    }
   },
   methods: {
     searchRequest(key, sort) {
-      this.$emit("searchRequest", { key, sort });
+      this.$emit('searchRequest', { key, sort })
       // console.log(key, sort);
     },
     cataClick(str, index) {
-      this.activeIndex = index;
-      this.activeCata = str;
-      this.state = str;
-      this.searchRequest(this.state, this.sortBom);
+      this.activeIndex = index
+      this.activeCata = str
+      this.state = str
+      this.searchRequest(this.state, this.sortBom)
     },
     handleCommand(command) {
-      this.sortBom = command;
-      this.searchRequest(this.state, this.sortBom);
+      this.sortBom = command
+      this.searchRequest(this.state, this.sortBom)
     },
     //监听输入框内容 防抖函数
     search: debounce(function () {
-      if (this.state == "") {
-        this.activeIndex = 0;
-        this.activeCata = "ALL";
+      if (this.state == '') {
+        this.activeIndex = 0
+        this.activeCata = 'ALL'
       }
-      this.searchRequest(this.state, this.sortBom);
+      this.searchRequest(this.state, this.sortBom)
     }),
     querySearch(queryString, cb) {
-      let restaurants = this.restaurants;
-      let results = queryString
-        ? restaurants.filter(this.createFilter(queryString))
-        : restaurants;
+      let restaurants = this.restaurants
+      let results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants
       // 调用 callback 返回建议列表的数据
-      results.forEach((item) => {
-        item.value = item.title;
-      });
-      cb(results);
+      results.forEach(item => {
+        item.value = item.title
+      })
+      cb(results)
     },
     createFilter(queryString) {
-      return (restaurant) => {
-        return (
-          restaurant.title.toLowerCase().indexOf(queryString.toLowerCase()) !==
-          -1
-        );
-      };
+      return restaurant => {
+        return restaurant.title.toLowerCase().indexOf(queryString.toLowerCase()) !== -1
+      }
     },
     handleSelect(item) {
-      this.searchRequest(item.title, this.sortBom);
-    },
-  },
-};
+      this.searchRequest(item.title, this.sortBom)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

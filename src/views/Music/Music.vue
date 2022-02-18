@@ -54,8 +54,8 @@ export default {
       }
       return obj
     })
-    const resSong = await getMusicPlayUrl(this.tracks[0].id)
-    this.tracks[0].source = resSong.data[0].url
+    // const resSong = await getMusicPlayUrl(this.tracks[0].id)
+    // this.tracks[0].source = resSong.data[0].url
     this.logo = playlist.coverImgUrl
     // const resSong = await getMusicPlayUrl(this.list[0].id)
     // const Detail = await getMusicDetail(this.list[0].id)
