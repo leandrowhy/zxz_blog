@@ -204,10 +204,12 @@ export default {
     }
   },
   methods: {
-    init() {
+    async init() {
       let vm = this
       this.currentTrack = this.tracks[0] || {}
       this.audio = this.audio || new Audio()
+      const resSong = await getMusicPlayUrl(this.tracks[0].id)
+      this.currentTrack.source = resSong.data[0].url
       this.audio.src = this.currentTrack.source
       this.audio.ontimeupdate = function () {
         vm.generateTime()
@@ -332,15 +334,17 @@ export default {
   },
   watch: {
     tracks: {
-      handler(newV) {
-        if (newV) {
+      handler(newV, oldV) {
+        if ((newV[0] || {}).id !== (oldV[0] || {}).id) {
           this.init()
         }
       },
       deep: true
     }
   },
-  created() {}
+  created() {
+    // this.init()
+  }
 }
 </script>
 
