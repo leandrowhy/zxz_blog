@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build"
   },
@@ -13,6 +14,7 @@
     "js-md5": "^0.7.3",
     "marked": "^1.2.9",
     "nprogress": "^0.2.0",
+    "valine": "^1.4.16",
     "vue": "^2.6.11",
     "vue-infinite-scroll": "^2.0.2",
     "vue-router": "^3.0.1",

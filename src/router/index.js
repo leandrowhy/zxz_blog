@@ -51,7 +51,7 @@ const routes = [
     name: "About",
     component: () => import("../views/About/About.vue"),
     meta: {
-      perfect: true,
+      perfect: false,
       index: 3,
     },
   },
@@ -68,7 +68,7 @@ const routes = [
     name: "Contact",
     component: () => import("../views/Contact/Contact.vue"),
     meta: {
-      perfect: true,
+      perfect: false,
       index: 3,
     },
   },
