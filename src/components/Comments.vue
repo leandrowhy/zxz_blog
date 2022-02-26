@@ -29,8 +29,8 @@ export default {
       //   path: window.location.pathname,
       //   placeholder: '欢迎留言与我分享您的想法...'
       // }
-      const valine = new Valine(valineConfig)
       valineConfig.path = window.location.pathname
+      const valine = new Valine(valineConfig)
       this.valineRefresh = false
     }
   },
