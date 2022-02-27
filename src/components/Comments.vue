@@ -56,7 +56,7 @@ export default {
 
 <style scoped lang="scss">
 #vcomments {
-  max-width: 740px;
+  // max-width: 740px;
   padding: 10px;
   display: block;
   margin-left: auto;
