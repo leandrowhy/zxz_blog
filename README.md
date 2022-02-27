@@ -12,11 +12,11 @@
 
 插件: vue-quill-editor/mavon-editor
 
-\* 支持 markdown 和 富文本
+\* 文章支持 markdown 语法 和 富文本编辑
 
 后端: Node/Express/Mysql
 
-文章评论使用Valine  官网：[https://valine.js.org/](https://valine.js.org/)
+文章评论使用 Valine 官网：[https://valine.js.org/](https://valine.js.org/)
 
 已完成：
 
@@ -28,12 +28,12 @@
 - [x] 登录/注册
 - [x] 音乐播放(更多新功能待添加~)
 - [x] 文章评论 （Valine - 一款快速、简洁且高效的无后端评论系统）
+- [x] 留言模块
 
 未完待续....
 
 - [ ] ~~忘记密码~~
 - [ ] ~~用户中心~~
-- [ ] ~~留言模块~~
 - [ ] ~~more~~
 
 ### 更多功能正在努力开发中，敬请期待...
