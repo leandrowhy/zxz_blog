@@ -90,7 +90,7 @@ export default {
       let secondsAre = _this.$refs.docbox.wrap.scrollTop / 100
       //设置最小值
       secondsAre = secondsAre < 50 ? 50 : secondsAre
-      timer = setInterval(function () {
+      timer = setInterval(function() {
         currentPosition = _this.$refs.docbox.wrap.scrollTop
         currentPosition -= secondsAre
         if (currentPosition > 0) {
@@ -120,7 +120,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('//at.alicdn.com/t/font_2294844_ca313iqx92.css');
+@import url('//at.alicdn.com/t/font_2294844_k2ik2x9vp2k.css');
 @import './assets/css/github-markdown.css';
 @import './assets/css/highlight.css';
 
