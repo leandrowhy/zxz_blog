@@ -39,6 +39,7 @@
       </div>
     </div>
     <div class="message-board">
+      <p class="tips">tips：昵称输入QQ号码可以自动填充昵称、邮箱及头像</p>
       <Comments />
     </div>
     <CopyBottom />
@@ -131,5 +132,10 @@ export default {
       color: #015335;
     }
   }
+}
+.tips {
+  font-size: 12px;
+  color: #333;
+  padding: 0 40px;
 }
 </style>
