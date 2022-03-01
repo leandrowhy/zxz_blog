@@ -122,7 +122,7 @@ export default {
     },
     gitHubLogin() {
       window.location.href =
-        'https://github.com/login/oauth/authorize?client_id=e4a1ffcdc0a852a9cc1b&redirect_uri=http://localhost:8080/login'
+        'https://github.com/login/oauth/authorize?client_id=e4a1ffcdc0a852a9cc1b&redirect_uri=http://clowned.cn/login'
     }
   }
 }
