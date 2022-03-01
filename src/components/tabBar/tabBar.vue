@@ -46,6 +46,7 @@
 
 <script>
 import dropDown from './dropDown'
+import { removeCookie } from '../../tools/cookie'
 export default {
   name: 'tabBar',
   components: {
@@ -115,7 +116,8 @@ export default {
         list: [
           { index: 4, pathName: 'UserHome', title: '主页' },
           { index: 4, pathName: 'Profile', title: '个人信息' },
-          { index: 4, pathName: 'Fav', title: '收藏' }
+          { index: 4, pathName: 'Fav', title: '收藏' },
+          { index: 4, pathName: '', title: '退出登录', quit: true }
         ]
       },
       // 未登录的路由
@@ -139,7 +141,19 @@ export default {
         this.$router.push({ name })
       }
     },
-    ghIndex(index) {
+    ghIndex(index, isquit = false) {
+      // 是否是退出登录
+      if (isquit) {
+        removeCookie('USER')
+        removeCookie('TOKEN')
+        this.$store.commit('setIsLogin', false)
+        this.$store.commit('setUserInfo', null)
+        this.$store.commit('setToken', null)
+        this.activeIndex = 0
+        this.$router.push({ name: 'Home' })
+
+        return
+      }
       this.activeIndex = index
     }
   },

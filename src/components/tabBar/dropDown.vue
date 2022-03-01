@@ -1,11 +1,12 @@
 <template>
   <el-dropdown>
     <span class="el-dropdown-link">
-      {{ title }}<i class="el-icon-arrow-down el-icon--right"></i>
+      {{ title }}
+      <i class="el-icon-arrow-down el-icon--right"></i>
     </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item v-for="(item, index) in list" :key="index">
-        <span @click="goRouter(item.pathName, item.index)">
+        <span @click="goRouter(item.pathName, item.index, item.quit)">
           {{ item.title }}
         </span>
       </el-dropdown-item>
@@ -15,29 +16,29 @@
 
 <script>
 export default {
-  name: "dropDown",
+  name: 'dropDown',
   props: {
     title: {
       type: String,
-      default: "标题",
+      default: '标题'
     },
     list: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   data() {
-    return {};
+    return {}
   },
   methods: {
-    goRouter(name, index) {
-      this.$emit("ghIndex", index);
-      this.$router.push({ name });
-    },
-  },
-};
+    goRouter(name, index, quit = false) {
+      this.$emit('ghIndex', index, quit)
+      this.$router.push({ name })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

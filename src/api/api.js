@@ -40,3 +40,6 @@ export const register = p => post('/api/users/register', p)
 
 //登陆接口
 export const Login = p => post('/api/users/login', p)
+
+//github登陆接口
+export const githubLogin = p => post('/api/users/github/user_info', p)

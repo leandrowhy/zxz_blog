@@ -17,11 +17,7 @@
       </div>
       <div class="box" v-else>
         <div class="input-box">
-          <input
-            type="text"
-            placeholder="请输入邮箱、用户名、账号"
-            v-model="user"
-          />
+          <input type="text" placeholder="请输入邮箱、用户名、账号" v-model="user" />
           <p class="el-icon-user iptit">账号：</p>
         </div>
         <div class="input-box">
@@ -35,86 +31,104 @@
     <!-- 快捷登陆 -->
     <div class="login-thirdpart">
       <span class="iconfont icon-qq" title="QQ登陆" @click="thirdParty"></span>
-      <span
-        class="iconfont icon-wechat-fill"
-        title="微信登陆"
-        @click="thirdParty"
-      ></span>
-      <span
-        class="iconfont icon-weibo"
-        title="微博登陆"
-        @click="thirdParty"
-      ></span>
+      <span class="iconfont icon-wechat-fill" title="微信登陆" @click="thirdParty"></span>
+      <span class="iconfont icon-github1" title="GitHub登陆" @click="gitHubLogin"></span>
     </div>
   </div>
 </template>
- 
+
 <script>
-import { Login } from "@/api/api";
-import md5 from "js-md5";
-import { setCookie } from "@/tools/cookie";
+import { Login, githubLogin } from '@/api/api'
+import md5 from 'js-md5'
+import { setCookie } from '@/tools/cookie'
 export default {
-  name: "LoginBox",
+  name: 'LoginBox',
   data() {
     return {
-      user: "",
-      psd: "",
-      isloading: false,
-    };
+      user: '',
+      psd: '',
+      isloading: false
+    }
+  },
+  created() {
+    // 获取url里面的code
+    var code = this.$route.query.code || ''
+    let that = this
+    if (code == '') {
+      return
+    }
+    this.isloading = true
+    githubLogin({ code }).then(
+      res => {
+        that.loginLogic(res)
+      },
+      err => {
+        console.log(err)
+      }
+    )
   },
   methods: {
     // 登陆按钮
     loginCLick() {
-      if (this.user == "" && this.psd == "") {
+      if (this.user == '' && this.psd == '') {
         this.$notify.error({
-          title: "错误信息",
-          message: "用户名或密码不能为空",
-        });
-        return;
+          title: '错误信息',
+          message: '用户名或密码不能为空'
+        })
+        return
       }
-      let psd = md5(this.psd);
-      Login({ user: this.user, psd }).then((res) => {
-        if (res.code == 200) {
-          // 注册成功 处理事务
-          this.isloading = true;
-          let regtimer = setTimeout(() => {
-            this.$notify({
-              title: "成功信息",
-              message: "登陆成功",
-              type: "success",
-            });
-            let str = encodeURI(JSON.stringify(res.data));
-            setCookie("USER", str); //存入cookie
-            setCookie("TOKEN", res.token); //存入cookie
-            //信息转码
-            console.log(str);
-            this.$store.commit("setIsLogin", true);
-            this.$store.commit("setUserInfo", res.data);
-            this.$store.commit("setToken", res.token);
-            this.$route.query.redirect
-              ? this.$router.push({ path: `${this.$route.query.redirect}` })
-              : this.$router.push({ name: "User" });
-            clearTimeout(regtimer);
-          }, 1200);
-        } else {
-          this.$notify.error({
-            title: "错误信息",
-            message: res.msg,
-          });
-        }
-      });
+      let psd = md5(this.psd)
+      let that = this
+      this.isloading = true
+      Login({ user: this.user, psd }).then(res => {
+        that.loginLogic(res)
+      })
+    },
+    loginLogic(res) {
+      if (res.code == 200) {
+        // 登录成功 处理事务
+        let regtimer = setTimeout(() => {
+          this.$notify({
+            title: '成功信息',
+            message: '登陆成功',
+            type: 'success'
+          })
+          let str = encodeURI(JSON.stringify(res.data))
+          setCookie('USER', str) //存入cookie
+          setCookie('TOKEN', res.token) //存入cookie
+          //信息转码
+          this.$store.commit('setIsLogin', true)
+          this.$store.commit('setUserInfo', res.data)
+          this.$store.commit('setToken', res.token)
+          this.$route.query.redirect
+            ? this.$router.push({ path: `${this.$route.query.redirect}` })
+            : this.$router.push({ name: 'User' })
+          clearTimeout(regtimer)
+          this.isloading = false
+        }, 1200)
+      } else {
+        this.$notify.error({
+          title: '错误信息',
+          message: res.msg
+        })
+        this.isloading = false
+      }
     },
     thirdParty() {
       this.$notify.info({
-        title: "登陆提示",
-        message: "该登陆方式暂未开放~",
-      });
+        title: '登陆提示',
+        message: '该登陆方式暂未开放~'
+      })
     },
-  },
-};
+    gitHubLogin() {
+      window.location.href =
+        'https://github.com/login/oauth/authorize?client_id=e4a1ffcdc0a852a9cc1b&redirect_uri=http://localhost:8080/login'
+    }
+  }
+}
 </script>
- 
-<style scoped lang = "scss">
+
+<style scoped lang="scss">
 .login-box {
   padding: 0 40px;
 }
