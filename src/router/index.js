@@ -128,7 +128,14 @@ router.beforeEach((to, from, next) => {
       type: "warning",
     });
   }
-  if (to.params.id != from.params.id) {
+  if (to.name == from.name) {
+    next();
+    return
+  }
+  if (to.name == "Studydetails") {
+    NProgress.start();
+    store.commit("setIsShow", true);
+  } else if (to.params.id != from.params.id) {
     NProgress.start();
     // NProgress.inc();
     store.commit("setIsShow", false);

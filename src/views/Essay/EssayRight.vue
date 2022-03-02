@@ -8,7 +8,7 @@
           v-for="(item, index) in enterHot"
           :key="index"
           :title="item.title"
-          @click="goRouter(item.id)"
+          @click="goRouter(item.id, item.img)"
         >
           <img class="tx" v-lazy="item.img" alt="" />
           <div class="list-info">
@@ -23,24 +23,24 @@
 
 <script>
 export default {
-  name: "EssayRight",
+  name: 'EssayRight',
   data() {
     return {
-      hotList: [],
-    };
+      hotList: []
+    }
   },
   computed: {
     enterHot() {
-      return this.$store.state.enterHot;
-    },
+      return this.$store.state.enterHot
+    }
   },
   created() {},
   methods: {
-    goRouter(id) {
-      this.$router.push({ name: "Studydetails", params: { id } });
-    },
-  },
-};
+    goRouter(id, img) {
+      this.$router.push({ name: 'Studydetails', params: { id, img } })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

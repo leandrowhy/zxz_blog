@@ -1,9 +1,9 @@
 <template>
   <div class="details">
-    <div class="bg_active">
-      <img class="bg-img" v-lazy="enter.img" />
+    <div :class="{ 'trans-bg': true, bg_active: isShow }">
+      <img class="bg-img" v-lazy="bgImg" />
     </div>
-    <div class="study-main">
+    <div class="study-main" v-show="isShow">
       <!-- <el-scrollbar style="height: 100vh" ref="docbox"> -->
       <div class="studymain-shell">
         <aside class="bot-left"><AsideLeft :enter="enter" /></aside>
@@ -23,6 +23,8 @@ import AsideRight from '@/views/Studydetails/AsideRight'
 import { getArticleInfo } from '@/api/api'
 //节流函数
 import fnThrottle from '@/tools/fnThrottle'
+// 默认背景图片
+import defaultBgImg from '@/assets/img/20200204113055.jpg'
 export default {
   name: 'Studydetails',
   components: {
@@ -34,21 +36,33 @@ export default {
     return {
       code: '',
       id: 0,
-      enter: {
-        img: require('../../assets/img/20200204113055.jpg')
-      }
+      enter: {},
+      bgImg: '',
+      isShow: false,
+      timer: null,
+      timerCount: 0
     }
   },
   created() {
+    this.$show()
     this.getData()
+    console.log(this.$route.params)
+    this.bgImg = this.$route.params.img || defaultBgImg
   },
   methods: {
     // 获取数据
     getData() {
       let id = (this.id = this.$route.params.id)
+      let that = this
+      this.timer = setInterval(() => {
+        that.timerCount += 300
+        if (that.timerCount >= 1500 && that.enter.id) {
+          that.isShow = true
+          clearInterval(that.timer)
+        }
+      }, 300)
       getArticleInfo({ id }).then(res => {
         this.enter = res.data.content
-        this.$show()
       })
     },
     handleScroll() {
@@ -77,7 +91,7 @@ export default {
 .details {
   overflow-x: hidden;
 }
-.bg_active {
+.trans-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -85,6 +99,25 @@ export default {
   z-index: -1;
   width: 100%;
   height: 100vh;
+  text-align: center;
+  .bg-img {
+    width: 100%;
+    height: 100%;
+    animation: sizeTheChange 1s;
+    animation-iteration-count: 1;
+  }
+}
+@keyframes sizeTheChange {
+  0% {
+    width: 10%;
+    height: 70%;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+  }
+}
+.bg_active {
   &::before {
     background: hsla(0, 0%, 100%, 0.4);
     content: '';
@@ -95,10 +128,6 @@ export default {
     width: 100%;
     height: 100%;
     transition: all 0.6s;
-  }
-  .bg-img {
-    width: 100%;
-    height: 100%;
   }
 }
 .studymain-shell {

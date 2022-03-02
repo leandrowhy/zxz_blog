@@ -1,5 +1,5 @@
 <template>
-  <div class="item" @click="goRouter(item.id)">
+  <div class="item" @click="goRouter(item.id, item.img)">
     <div class="card-cover" :title="item.title">
       <img class="bg-img" v-lazy="item.img" />
       <div class="bot-title">
@@ -56,8 +56,8 @@ export default {
     return {}
   },
   methods: {
-    goRouter(id) {
-      this.$router.push({ name: 'Studydetails', params: { id } })
+    goRouter(id, img) {
+      this.$router.push({ name: 'Studydetails', params: { id, img } })
     }
   }
 }

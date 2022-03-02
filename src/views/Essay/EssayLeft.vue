@@ -3,12 +3,7 @@
     <ul class="list">
       <!-- infinite-list -->
       <!-- v-infinite-scroll="load" -->
-      <li
-        v-for="(item, i) in articcle"
-        :key="i"
-        class="card"
-        @click="goRouter(item.id)"
-      >
+      <li v-for="(item, i) in articcle" :key="i" class="card" @click="goRouter(item.id, item.img)">
         <div class="card-img">
           <img v-lazy="item.img" alt="" />
         </div>
@@ -16,16 +11,18 @@
           <p class="card-title">{{ item.title }}</p>
           <p class="card-intor">{{ item.introduction }}</p>
           <div class="card-else">
-            <span class="fa clock"
-              ><i class="iconfont icon-rili"></i
-              >{{ item.date | timeTransformation }}</span
-            >
-            <span class="fa eye"
-              ><i class="iconfont icon-liulan"></i>{{ item.views }}</span
-            >
-            <span class="fa comments"
-              ><i class="iconfont icon-pinglun"></i>{{ 0 }}</span
-            >
+            <span class="fa clock">
+              <i class="iconfont icon-rili"></i>
+              {{ item.date | timeTransformation }}
+            </span>
+            <span class="fa eye">
+              <i class="iconfont icon-liulan"></i>
+              {{ item.views }}
+            </span>
+            <span class="fa comments">
+              <i class="iconfont icon-pinglun"></i>
+              {{ 0 }}
+            </span>
           </div>
         </div>
       </li>
@@ -46,41 +43,41 @@
 
 <script>
 export default {
-  name: "EssayLeft",
+  name: 'EssayLeft',
   data() {
     return {
-      count: 0,
-    };
+      count: 0
+    }
   },
   props: {
     articcle: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   filters: {
     timeTransformation(inputTime) {
-      let date = new Date(inputTime);
-      let y = date.getFullYear();
-      let m = date.getMonth() + 1;
-      m = m < 10 ? "0" + m : m;
-      let d = date.getDate();
-      d = d < 10 ? "0" + d : d;
-      return y + "-" + m + "-" + d;
-    },
+      let date = new Date(inputTime)
+      let y = date.getFullYear()
+      let m = date.getMonth() + 1
+      m = m < 10 ? '0' + m : m
+      let d = date.getDate()
+      d = d < 10 ? '0' + d : d
+      return y + '-' + m + '-' + d
+    }
   },
   methods: {
     load() {},
-    goRouter(id) {
+    goRouter(id, img) {
       this.$router.push({
-        name: "Studydetails",
-        params: { id }
-      });
-    },
-  },
-};
+        name: 'Studydetails',
+        params: { id, img }
+      })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

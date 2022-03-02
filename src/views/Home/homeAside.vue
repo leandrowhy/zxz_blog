@@ -8,7 +8,7 @@
           v-for="(item, index) in enterHot"
           :key="index"
           :title="item.title"
-          @click="goRouter(item.id)"
+          @click="goRouter(item.id, item.img)"
         >
           <img class="tx" v-lazy="item.img" alt="" />
           <div class="article-info">
@@ -22,44 +22,44 @@
 </template>
 
 <script>
-import homeAsideAbout from "@/views/Home/HomeAsideAbout";
-import titleBox from "@/components/titleBox";
+import homeAsideAbout from '@/views/Home/HomeAsideAbout'
+import titleBox from '@/components/titleBox'
 export default {
-  name: "homeAside",
+  name: 'homeAside',
   components: {
     homeAsideAbout,
-    titleBox,
+    titleBox
   },
   props: {
     isShow: {
       type: Boolean,
-      default: true,
+      default: true
     },
     isGreen: {
       type: Boolean,
-      default: false,
+      default: false
     },
     homeInfo: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   computed: {
     enterHot() {
-      return this.$store.state.enterHot;
-    },
+      return this.$store.state.enterHot
+    }
   },
   data() {
-    return {};
+    return {}
   },
   methods: {
-    goRouter(id) {
-      this.$router.push({ name: "Studydetails", params: { id } });
-    },
-  },
-};
+    goRouter(id, img) {
+      this.$router.push({ name: 'Studydetails', params: { id, img } })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

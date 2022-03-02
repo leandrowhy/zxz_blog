@@ -1,26 +1,20 @@
 <template>
   <div class="carousel">
-    <el-carousel
-      :interval="3000"
-      arrow="hover"
-      height="100%"
-      ref="carousel"
-      @change="updateCar"
-    >
+    <el-carousel :interval="3000" arrow="hover" height="100%" ref="carousel" @change="updateCar">
       <el-carousel-item v-for="(item, index) in banner" :key="index">
-        <div
-          class="carousel-info"
-          @mouseover="addFilter(index)"
-          @mouseout="moveFilter(index)"
-        >
+        <div class="carousel-info" @mouseover="addFilter(index)" @mouseout="moveFilter(index)">
           <p class="tj">
-            <i class="el-icon-caret-right" style="color: red"></i> 推荐文章
+            <i class="el-icon-caret-right" style="color: red"></i>
+            推荐文章
           </p>
           <p class="title" :title="item.title">{{ item.title }}</p>
-          <span class="btn-right" @click="goRouter(item.id)" title="文章详情">READ MORE</span>
+          <span class="btn-right" @click="goRouter(item.id, item.img)" title="文章详情">
+            READ MORE
+          </span>
           <div class="tag-bot">
             <div class="el-icon-collection-tag">
-              |<span class="hash" @click="next(index)" title="next 下一篇">Next</span>
+              |
+              <span class="hash" @click="next(index)" title="next 下一篇">Next</span>
             </div>
           </div>
         </div>
@@ -41,50 +35,50 @@
 
 <script>
 export default {
-  name: "carousel",
+  name: 'carousel',
   props: {
     banner: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   data() {
     return {
-      activeIndex: 0,
-    };
+      activeIndex: 0
+    }
   },
   methods: {
     addFilter(i) {
-      this.$refs.bgimg[i].style = "filter: blur(5px)";
+      this.$refs.bgimg[i].style = 'filter: blur(5px)'
     },
     moveFilter(i) {
-      this.$refs.bgimg[i].style = "";
+      this.$refs.bgimg[i].style = ''
     },
     // 更新当前轮播图
     update(i) {
-      this.activeIndex = i;
-      this.$refs.carousel.setActiveItem(i);
+      this.activeIndex = i
+      this.$refs.carousel.setActiveItem(i)
     },
     // 更新卡片
     updateCar(now, old) {
-      this.activeIndex = now;
+      this.activeIndex = now
     },
     // 跳转路由 到详情页
-    goRouter(id) {
-      this.$router.push({ name: "Studydetails", params: { id } });
+    goRouter(id, img) {
+      this.$router.push({ name: 'Studydetails', params: { id, img } })
     },
     // 下一个
     next(i) {
       if (++i >= 3) {
-        i = 0;
+        i = 0
       }
-      this.activeIndex = i;
-      this.$refs.carousel.setActiveItem(i);
-    },
-  },
-};
+      this.activeIndex = i
+      this.$refs.carousel.setActiveItem(i)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -240,7 +234,7 @@ export default {
     transition: all 0.4s ease;
     &::before {
       position: absolute;
-      content: "";
+      content: '';
       top: -5px;
       left: -5px;
       bottom: -5px;
