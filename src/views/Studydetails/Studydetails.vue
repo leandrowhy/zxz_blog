@@ -46,7 +46,6 @@ export default {
   created() {
     this.$show()
     this.getData()
-    console.log(this.$route.params)
     this.bgImg = this.$route.params.img || defaultBgImg
   },
   methods: {
@@ -76,14 +75,14 @@ export default {
         backTop.style.transform = `translateY(${moveHeight})`
       }
     }
-  },
-  watch: {
-    $route(to, from) {
-      if (to.params.id != from.params.id) {
-        this.getData()
-      }
-    }
   }
+  // watch: {
+  //   $route(to, from) {
+  //     if (to.params.id != from.params.id) {
+  //       this.getData()
+  //     }
+  //   }
+  // }
 }
 </script>
 

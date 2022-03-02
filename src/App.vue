@@ -4,7 +4,7 @@
       <tab-bar />
       <!-- 内容 -->
       <keep-alive include="Music">
-        <router-view class="animated fadeIn" v-show="isShow" />
+        <router-view :key="$route.path" class="animated fadeIn" v-show="isShow" />
       </keep-alive>
 
       <!-- 数据加载 过渡页 -->

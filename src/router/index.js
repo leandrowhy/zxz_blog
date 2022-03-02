@@ -128,17 +128,17 @@ router.beforeEach((to, from, next) => {
       type: "warning",
     });
   }
-  if (to.name == from.name) {
-    next();
-    return
-  }
   if (to.name == "Studydetails") {
     NProgress.start();
+    store.commit("setIsShow", false);
     store.commit("setIsShow", true);
   } else if (to.params.id != from.params.id) {
     NProgress.start();
     // NProgress.inc();
     store.commit("setIsShow", false);
+  }
+  if (to.path == from.path) {
+    NProgress.done(true);
   }
   next();
 });
