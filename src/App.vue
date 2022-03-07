@@ -35,7 +35,9 @@ import tabBar from './components/tabBar/tabBar'
 import ElImageViewer from 'element-ui/packages/image/src/image-viewer'
 //节流函数
 import fnThrottle from '@/tools/fnThrottle'
-import { getCookie } from '@/tools/cookie'
+import { getCookie, setCookie, removeCookie } from '@/tools/cookie'
+import { getLocal, setLocal, delLocal } from '@/tools/localStorage'
+import { tokenVerify } from '@/api/api'
 export default {
   components: {
     tabBar,
@@ -59,13 +61,27 @@ export default {
   },
   created() {
     this.$store.dispatch('getArticleHot')
-    if (getCookie('USER') != undefined && getCookie('USER') != '') {
-      console.log(getCookie('USER'))
-      let user = JSON.parse(getCookie('USER'))
-      this.$store.commit('setToken', getCookie('TOKEN'))
-      this.$store.commit('setUserInfo', user)
-      this.$store.commit('setIsLogin', true)
-    }
+    let token = getLocal('TOKEN')
+    tokenVerify({ token }).then(res => {
+      if (res.code == 200) {
+        const user = res.data
+        const token = res.token
+        this.$store.commit('setToken', user)
+        this.$store.commit('setUserInfo', user)
+        this.$store.commit('setIsLogin', true)
+        setLocal('TOKEN', token)
+        setLocal('USER', user) //存入localstorage
+        setCookie('TOKEN', token) //存入cookie
+        //信息转码
+        this.$store.commit('setIsLogin', true)
+        this.$store.commit('setUserInfo', user)
+        this.$store.commit('setToken', token)
+      } else {
+        delLocal('TOKEN')
+        delLocal('USER')
+        removeCookie('TOKEN')
+      }
+    })
   },
   mounted() {
     this.handleScroll()

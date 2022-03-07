@@ -2,7 +2,7 @@
  * @Description:
  * @Author: leandrowhy
  * @Date: 2020-12-25 16:59:31
- * @LastEditTime: 2022-03-07 21:35:05
+ * @LastEditTime: 2022-03-08 01:53:08
  * @LastEditors: Please set LastEditors
  * @FilePath: \front-end\vue.config.js
  * 希望此代码无bug~

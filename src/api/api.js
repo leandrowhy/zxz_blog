@@ -46,3 +46,6 @@ export const githubLogin = p => post('/api/users/github/user_info', p)
 
 //qq登陆接口
 export const qqLogin = p => post('/api/users/qq/user_info', p)
+
+//token校验
+export const tokenVerify = p => post('/api/users/verify_token', p)

@@ -80,14 +80,12 @@ export default {
     )
   },
   mounted() {
-    this.$nextTick(() => {
-      const body = document.querySelector('body')
-      if (body.append) {
-        body.append(this.$refs.load)
-      } else {
-        body.appendChild(this.$refs.load)
-      }
-    })
+    const body = document.querySelector('body')
+    if (body.append) {
+      body.append(this.$refs.load)
+    } else {
+      body.appendChild(this.$refs.load)
+    }
   },
   methods: {
     // 登陆按钮
@@ -115,8 +113,8 @@ export default {
             message: '登陆成功',
             type: 'success'
           })
-          let str = encodeURI(JSON.stringify(res.data))
-          setCookie('USER', str) //存入cookie
+          setLocal('TOKEN', res.token)
+          setLocal('USER', res.data) //存入localstorage
           setCookie('TOKEN', res.token) //存入cookie
           //信息转码
           this.$store.commit('setIsLogin', true)
