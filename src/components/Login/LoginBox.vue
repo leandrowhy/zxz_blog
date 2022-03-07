@@ -2,20 +2,7 @@
   <div class="login-box">
     <div class="centen-box">
       <h2 class="title">登陆</h2>
-      <div class="load" v-if="isloading">
-        <div
-          class="mint-spinner-snake"
-          style="
-            border-top-color: rgb(38, 162, 255);
-            border-left-color: rgb(38, 162, 255);
-            border-bottom-color: rgb(38, 162, 255);
-            height: 88px;
-            width: 88px;
-          "
-        ></div>
-        <p>登陆中...</p>
-      </div>
-      <div class="box" v-else>
+      <div class="box">
         <div class="input-box">
           <input type="text" placeholder="请输入邮箱、用户名、账号" v-model="user" />
           <p class="el-icon-user iptit">账号：</p>
@@ -30,15 +17,32 @@
     </div>
     <!-- 快捷登陆 -->
     <div class="login-thirdpart">
-      <span class="iconfont icon-qq" title="QQ登陆" @click="thirdParty"></span>
+      <span class="iconfont icon-qq" title="QQ登陆" @click="qqAuth"></span>
       <span class="iconfont icon-wechat-fill" title="微信登陆" @click="thirdParty"></span>
       <span class="iconfont icon-github1" title="GitHub登陆" @click="gitHubLogin"></span>
+    </div>
+    <!-- 登录加载盒子 -->
+    <div class="load" v-if="isloading" ref="load">
+      <div class="felx-box">
+        <div
+          class="mint-spinner-snake"
+          style="
+            border-top-color: rgb(38, 162, 255);
+            border-left-color: rgb(38, 162, 255);
+            border-bottom-color: rgb(38, 162, 255);
+            height: 88px;
+            width: 88px;
+          "
+        ></div>
+        <p>登陆中...</p>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Login, githubLogin } from '@/api/api'
+import { setLocal, getLocal } from '@/tools/localStorage'
+import { Login, githubLogin, qqLogin } from '@/api/api'
 import md5 from 'js-md5'
 import { setCookie } from '@/tools/cookie'
 export default {
@@ -52,13 +56,21 @@ export default {
   },
   created() {
     // 获取url里面的code
-    var code = this.$route.query.code || ''
+    const code = this.$route.query.code || ''
+    this.$route.query.code = ''
     let that = this
-    if (code == '') {
+    let type = getLocal('login_type') || ''
+    if (code == '' || type == '') {
       return
     }
     this.isloading = true
-    githubLogin({ code }).then(
+    let quickLogin = null
+    if (type == 1) {
+      quickLogin = qqLogin
+    } else {
+      quickLogin = githubLogin
+    }
+    quickLogin({ code }).then(
       res => {
         that.loginLogic(res)
       },
@@ -66,6 +78,16 @@ export default {
         console.log(err)
       }
     )
+  },
+  mounted() {
+    this.$nextTick(() => {
+      const body = document.querySelector('body')
+      if (body.append) {
+        body.append(this.$refs.load)
+      } else {
+        body.appendChild(this.$refs.load)
+      }
+    })
   },
   methods: {
     // 登陆按钮
@@ -121,8 +143,31 @@ export default {
       })
     },
     gitHubLogin() {
+      setLocal('login_type', '2')
       window.location.href =
         'https://github.com/login/oauth/authorize?client_id=e4a1ffcdc0a852a9cc1b&redirect_uri=http://clowned.cn/login'
+      // window.open(
+      //   url,
+      //   '_blank',
+      //   'GitHubLogin',
+      //   'width=450,height=320,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1'
+      // )
+    },
+    // 简单粗暴
+    qqAuth() {
+      setLocal('login_type', '1')
+      const appId = '101998428'
+      const redirectUrl = 'http://clowned.cn/login' // 回调地址 我这里路由是/login 你的是什么填什么
+      const url = `https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=${appId}&redirect_uri=${redirectUrl}`
+      window.location.href = url
+      // window.open(
+      //   url,
+      //   '_blank',
+      //   'TencentLogin',
+      //   'width=45,height=32,menubar=0,scrollbars=1,resizable=1,status=1,titlebar=0,toolbar=0,location=1'
+      // )
+      // 开始访问请求 ，这个时候用户点击登陆，就会跳转到qq登陆界面，
+      //登陆后会返回code 到最开始我们写好的后端接口也就是回调地址哪里，开始操作
     }
   }
 }
@@ -207,9 +252,27 @@ export default {
   }
 }
 .load {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+
+  background: rgba($color: #000, $alpha: 0.5);
+  z-index: 1000;
+  .felx-box {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
   p {
+    font-size: 20px;
     margin-top: 20px;
     text-align: center;
+    color: #fff;
   }
 }
 .mint-spinner-snake {

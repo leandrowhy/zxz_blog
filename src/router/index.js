@@ -126,6 +126,7 @@ router.beforeEach((to, from, next) => {
       title: "警告",
       message: "暂未开放~",
       type: "warning",
+      offset: 100
     });
   }
   if (to.name == "Studydetails") {

@@ -43,3 +43,6 @@ export const Login = p => post('/api/users/login', p)
 
 //github登陆接口
 export const githubLogin = p => post('/api/users/github/user_info', p)
+
+//qq登陆接口
+export const qqLogin = p => post('/api/users/qq/user_info', p)
