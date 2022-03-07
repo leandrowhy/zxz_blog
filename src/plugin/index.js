@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: leandrowhy
  * @Date: 2020-12-25 15:08:09
- * @LastEditTime: 2022-03-07 18:44:34
+ * @LastEditTime: 2022-03-07 21:39:06
  * @LastEditors: Please set LastEditors
  * @FilePath: \front-end\src\plugin\index.js
  * 希望此代码无bug~
@@ -26,7 +26,6 @@ import {
   Steps,
   Step,
   Scrollbar,
-  Dialog
 } from "element-ui";
 
 Vue.use(Autocomplete);
@@ -43,7 +42,6 @@ Vue.use(CarouselItem);
 Vue.use(Steps);
 Vue.use(Step);
 Vue.use(Scrollbar);
-Vue.use(Dialog);
 
 
 Vue.prototype.$notify = Notification;
