@@ -22,8 +22,8 @@
               <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="0">发布时间</el-dropdown-item>
-              <el-dropdown-item command="1">浏览量</el-dropdown-item>
+              <el-dropdown-item command="0"><span>发布时间</span></el-dropdown-item>
+              <el-dropdown-item command="1"><span>浏览量</span></el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </div>
@@ -83,7 +83,7 @@ export default {
       this.searchRequest(this.state, this.sortBom)
     },
     //监听输入框内容 防抖函数
-    search: debounce(function () {
+    search: debounce(function() {
       if (this.state == '') {
         this.activeIndex = 0
         this.activeCata = 'ALL'

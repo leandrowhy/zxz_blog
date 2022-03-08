@@ -30,10 +30,12 @@ html {
 }
 
 .el-dropdown-menu__item {
-  padding: 0 10px;
+  line-height: normal;
+  padding: 0;
 }
 .el-dropdown-menu__item span {
-  padding: 0 10px;
+  display: inline-block;
+  padding: 8px 20px;
 }
 
 /* 图片懒加载 */

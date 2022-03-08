@@ -22,7 +22,7 @@
       <span class="iconfont icon-github1" title="GitHub登陆" @click="gitHubLogin"></span>
     </div>
     <!-- 登录加载盒子 -->
-    <div class="load" v-if="isloading" ref="load">
+    <div class="load" v-show="isloading" ref="load">
       <div class="felx-box">
         <div
           class="mint-spinner-snake"

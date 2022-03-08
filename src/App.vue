@@ -3,8 +3,12 @@
     <div id="app" :class="{ 'right-sticky': rightSticky, 'left-sticky': leftSticky }">
       <tab-bar />
       <!-- 内容 -->
-      <keep-alive include="Music">
-        <router-view :key="$route.path" class="animated fadeIn" v-show="isShow" />
+      <keep-alive include="Music,User">
+        <router-view
+          :key="$route.meta.isParent ? 4 : $route.path"
+          class="animated fadeIn"
+          v-show="isShow"
+        />
       </keep-alive>
 
       <!-- 数据加载 过渡页 -->
