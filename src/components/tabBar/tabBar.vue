@@ -47,6 +47,7 @@
 <script>
 import dropDown from './dropDown'
 import { removeCookie } from '../../tools/cookie'
+import { delLocal } from '@/tools/localStorage'
 export default {
   name: 'tabBar',
   components: {
@@ -144,14 +145,27 @@ export default {
     ghIndex(index, isquit = false) {
       // 是否是退出登录
       if (isquit) {
-        removeCookie('USER')
-        removeCookie('TOKEN')
-        this.$store.commit('setIsLogin', false)
-        this.$store.commit('setUserInfo', null)
-        this.$store.commit('setToken', null)
-        this.activeIndex = 0
-        this.$router.push({ name: 'Home' })
-
+        this.$confirm('是否注销登录?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
+          .then(() => {
+            removeCookie('USER')
+            removeCookie('TOKEN')
+            delLocal('USER')
+            delLocal('TOKEN')
+            this.$store.commit('setIsLogin', false)
+            this.$store.commit('setUserInfo', null)
+            this.$store.commit('setToken', null)
+            this.activeIndex = 0
+            this.$router.push({ name: 'Home' })
+            this.$message({
+              type: 'success',
+              message: '注销成功!'
+            })
+          })
+          .catch(() => {})
         return
       }
       this.activeIndex = index

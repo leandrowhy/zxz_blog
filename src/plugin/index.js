@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: leandrowhy
  * @Date: 2020-12-25 15:08:09
- * @LastEditTime: 2022-03-07 21:39:06
+ * @LastEditTime: 2022-03-08 12:43:05
  * @LastEditors: Please set LastEditors
  * @FilePath: \front-end\src\plugin\index.js
  * 希望此代码无bug~
@@ -26,6 +26,7 @@ import {
   Steps,
   Step,
   Scrollbar,
+  MessageBox
 } from "element-ui";
 
 Vue.use(Autocomplete);
@@ -43,6 +44,6 @@ Vue.use(Steps);
 Vue.use(Step);
 Vue.use(Scrollbar);
 
-
+Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
