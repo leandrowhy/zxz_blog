@@ -1,90 +1,81 @@
 <template>
   <div class="picture">
     <div class="zxz-waterfall-box" ref="box">
-      <div
-        class="zxz-waterfall-column"
-        v-for="(item, index) in images"
-        :key="index"
-        ref="img"
-      >
-        <div
-          class="imgdfcard slide-ltin-up"
-          v-for="(e, index) in item"
-          :key="index"
-        >
-          <div
-            class="imgdfcard-btn el-icon-copy-document"
-            @click="onPreview(e.index)"
-          >
+      <div class="zxz-waterfall-column" v-for="(item, index) in images" :key="index" ref="img">
+        <div class="imgdfcard slide-ltin-up" v-for="(e, index) in item" :key="index">
+          <div class="imgdfcard-btn el-icon-copy-document" @click="onPreview(e.index)">
             点击查看
           </div>
-          <img v-lazy="e.url" alt="" />
+          <img v-lazy="e.url" alt="图片.png" class="imgdfcard-image" />
         </div>
       </div>
     </div>
   </div>
 </template>
- 
+
 <script>
-import { getAllPicture } from "@/api/api";
+import { getAllPicture } from '@/api/api'
 
 export default {
-  name: "Picture",
+  name: 'Picture',
 
   data() {
     return {
       images: [], //瀑布流数组 [[第一竖排],[第二竖排],[第三竖排]]
       allList: [],
-      urlList: [],
-    };
+      urlList: []
+    }
   },
   created() {
-    this.getData();
+    this.getData()
   },
   methods: {
     getData() {
-      getAllPicture().then((res) => {
-        this.allList = res.data;
+      getAllPicture().then(res => {
+        this.allList = res.data
         let arr1 = [],
           arr2 = [],
-          arr3 = [];
+          arr3 = []
         this.allList.forEach((e, i) => {
-          e.index = i;
+          e.index = i
           if ((i + 1) % 3 == 1) {
-            arr1.push(e);
+            arr1.push(e)
           } else if ((i + 1) % 3 == 2) {
-            arr2.push(e);
+            arr2.push(e)
           } else {
-            arr3.push(e);
+            arr3.push(e)
           }
-          this.urlList.push(e.url);
-        });
-        this.images.push(arr1, arr2, arr3);
-        this.$show();
-      });
+          this.urlList.push(e.url)
+        })
+        this.images.push(arr1, arr2, arr3)
+        this.$show()
+      })
     },
     onPreview(index) {
-      let arr = this.getList(this.urlList,index);
-      this.$bus.$emit("onPreview", true, arr);
+      let arr = this.getList(this.urlList, index)
+      this.$bus.$emit('onPreview', true, arr)
     },
-    //数据重新排列 abcd -> 传入下标2 =>cdab 
+    //数据重新排列 abcd -> 传入下标2 =>cdab
     // allList 需要重新排列的数据   index 开始下标
     getList(allList, index) {
-      let arr = [];
-      let i = 0;
+      let arr = []
+      let i = 0
       for (i; i < allList.length; i++) {
-        arr.push(allList[i + index]);
+        arr.push(allList[i + index])
         if (i + index >= allList.length - 1) {
-          index = 0 - (i + 1);
+          index = 0 - (i + 1)
         }
       }
-      return arr;
-    },
-  },
-};
+      return arr
+    }
+  }
+}
 </script>
- 
-<style scoped lang = "scss">
+
+<style scoped lang="scss">
+.picture {
+  background: rgba($color: #99ecf3, $alpha: 0.2);
+}
 .zxz-waterfall-box {
   width: 100%;
   display: flex;
@@ -92,6 +83,7 @@ export default {
     flex: 1;
     .imgdfcard {
       min-height: 300px;
+      max-height: 450px;
       box-sizing: border-box;
       position: relative;
       width: 100%;
@@ -138,7 +130,7 @@ export default {
           box-shadow: 0 0 10px rgba($color: #000000, $alpha: 0.4);
         }
       }
-      img {
+      .imgdfcard-image {
         display: block;
         width: 100%;
       }
@@ -147,7 +139,7 @@ export default {
 }
 .imgdfcard:after,
 .imgdfcard:before {
-  content: "";
+  content: '';
   position: absolute;
   width: 25%;
   height: 25%;
