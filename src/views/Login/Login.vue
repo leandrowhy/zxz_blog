@@ -7,7 +7,7 @@
         class="handover-box item-box"
         :class="{
           'handover-box-right': hmiState,
-          'handover-box-left': !hmiState,
+          'handover-box-left': !hmiState
         }"
       >
         <div
@@ -29,40 +29,37 @@
           <span class="btn jump" @click="hostate">登陆</span>
         </div>
       </div>
-      <RegisterBox
-        class="register-box item-box animated bounceInLeft"
-        v-show="!hmiState"
-      />
+      <RegisterBox class="register-box item-box animated bounceInLeft" v-show="!hmiState" />
     </div>
   </div>
 </template>
- 
+
 <script>
-import LoginBox from "@/components/Login/LoginBox";
-import RegisterBox from "@/components/Login/RegisterBox";
+import LoginBox from '@/components/Login/LoginBox'
+import RegisterBox from '@/components/Login/RegisterBox'
 export default {
-  name: "Login",
+  name: 'Login',
   components: {
     LoginBox,
-    RegisterBox,
+    RegisterBox
   },
   data() {
     return {
-      hmiState: true, //登陆注册界面切换  true 登陆界面  false 注册界面
-    };
+      hmiState: true //登陆注册界面切换  true 登陆界面  false 注册界面
+    }
   },
   mounted() {
-    this.$show();
+    this.$show()
   },
   methods: {
     hostate() {
-      this.hmiState = !this.hmiState;
-    },
-  },
-};
+      this.hmiState = !this.hmiState
+    }
+  }
+}
 </script>
- 
-<style scoped lang = "scss">
+
+<style scoped lang="scss">
 .login {
   position: relative;
   display: flex;
@@ -78,7 +75,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #eee url("../../assets/img/ababd1db8.png");
+  background: #eee url('../../assets/img/ababd1db8.png');
   background-size: 110%;
   animation: rollbg 20s infinite;
 }
@@ -137,7 +134,7 @@ export default {
     }
   }
 }
-/deep/ .btn {
+::v-deep .btn {
   display: inline-block;
   box-sizing: border-box;
   display: block;
@@ -151,7 +148,7 @@ export default {
   cursor: pointer;
   transition: all 0.4s ease;
 }
-/deep/ input {
+::v-deep input {
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -178,7 +175,7 @@ export default {
     }
   }
 }
-/deep/ .iptit {
+::v-deep .iptit {
   position: absolute;
   transform: translateY(0);
   z-index: 1;

@@ -21,44 +21,53 @@
 </template>
 
 <script>
-import BlogInfoItem from "@/views/Home/BlogInfoItem";
+import BlogInfoItem from '@/views/Home/BlogInfoItem'
 export default {
-  name: "HomeAsideAbout",
+  name: 'HomeAsideAbout',
   components: {
-    BlogInfoItem,
+    BlogInfoItem
   },
   props: {
     homeInfo: {
       type: Array,
       default() {
-        return [];
-      },
-    },
+        return []
+      }
+    }
   },
   data() {
     return {
-      blogTag: ["文章", "动漫", "评论", "浏览"],
-      valDate: 0,
-    };
+      blogTag: ['文章', '动漫', '评论', '浏览'],
+      valDate: 0
+    }
   },
   created() {
     setInterval(() => {
-      this.valDate = new Date();
-    }, 1000);
+      this.valDate = new Date()
+    }, 1000)
   },
   computed: {
     dateTime() {
       if (this.valDate != null) {
-        var date = new Date(this.valDate);
-        var hour = date.getHours().toString().padStart(2, "0");
-        var minute = date.getMinutes().toString().padStart(2, "0");
-        var second = date.getSeconds().toString().padStart(2, "0");
+        var date = new Date(this.valDate)
+        var hour = date
+          .getHours()
+          .toString()
+          .padStart(2, '0')
+        var minute = date
+          .getMinutes()
+          .toString()
+          .padStart(2, '0')
+        var second = date
+          .getSeconds()
+          .toString()
+          .padStart(2, '0')
 
-        return hour + " : " + minute + " : " + second;
+        return hour + ' : ' + minute + ' : ' + second
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -71,7 +80,7 @@ export default {
 .clock {
   width: 100%;
   height: 130px;
-  background: url("../../assets/img/20190917010840.jpg");
+  background: url('../../assets/img/20190917010840.jpg');
   background-size: cover;
   .clockanm {
     width: 100%;
@@ -104,7 +113,7 @@ export default {
   display: flex;
   text-align: center;
   align-items: center;
-  /deep/ .item {
+  ::v-deep .item {
     position: relative;
     box-sizing: border-box;
     display: flex;
@@ -115,7 +124,7 @@ export default {
     border-top: 1px solid #eee;
     height: 56px;
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       right: 0;
       display: block;

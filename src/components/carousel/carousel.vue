@@ -89,29 +89,29 @@ export default {
   border: 3px solid #fff;
   box-sizing: border-box;
   box-shadow: 0 1px 3px rgba(26, 26, 26, 0.1);
-  /deep/ img {
+  ::v-deep img {
     position: relative;
     width: 100%;
     height: 100%;
     border-radius: 3px;
     transition: all 0.4s ease;
   }
-  /deep/ .el-carousel--horizontal {
+  ::v-deep .el-carousel--horizontal {
     height: 100%;
   }
-  /deep/ .el-carousel--horizontal {
+  ::v-deep .el-carousel--horizontal {
     overflow: hidden;
   }
 
   // 切换效果
-  /deep/ .el-carousel__container .is-animating {
+  ::v-deep .el-carousel__container .is-animating {
     -webkit-animation: carousel-out 0.625s ease-in-out;
     animation: carousel-out 0.625s ease-in-out;
     & button {
       animation: none;
     }
   }
-  /deep/ .el-carousel__container .is-active {
+  ::v-deep .el-carousel__container .is-active {
     -webkit-animation: carousel-in 0.625s ease-in-out;
     animation: carousel-in 0.625s ease-in-out;
     & button {
@@ -119,7 +119,7 @@ export default {
     }
   }
   // 左右指示器
-  /deep/ .el-carousel__arrow--left {
+  ::v-deep .el-carousel__arrow--left {
     width: 0;
     height: 0;
     border-top: 50px solid transparent;
@@ -130,7 +130,7 @@ export default {
     border-radius: 0;
     left: 0;
   }
-  /deep/ .el-carousel__arrow--right {
+  ::v-deep .el-carousel__arrow--right {
     width: 0;
     height: 0;
     border-top: 50px solid transparent;
@@ -141,8 +141,8 @@ export default {
     border-radius: 0;
     right: 0;
   }
-  /deep/ .el-carousel__arrow .el-icon-arrow-left,
-  /deep/ .el-carousel__arrow .el-icon-arrow-right {
+  ::v-deep .el-carousel__arrow .el-icon-arrow-left,
+  ::v-deep .el-carousel__arrow .el-icon-arrow-right {
     display: none;
   }
 }

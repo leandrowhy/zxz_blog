@@ -73,10 +73,10 @@ export default {
 <style scoped lang="scss">
 .left {
   border-radius: 0 !important;
-  /deep/ .title-box {
+  ::v-deep .title-box {
     border-radius: 0;
   }
-  /deep/ .mrtop {
+  ::v-deep .mrtop {
     margin-top: 16px;
   }
 }

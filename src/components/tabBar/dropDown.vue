@@ -42,12 +42,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/deep/ .el-dropdown-link:hover {
+::v-deep .el-dropdown-link:hover {
   cursor: pointer;
   color: #72dafa;
 }
 
-/deep/ .el-icon-arrow-down {
+::v-deep .el-icon-arrow-down {
   font-size: 14px;
 }
 </style>

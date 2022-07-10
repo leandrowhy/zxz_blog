@@ -11,49 +11,49 @@
 </template>
 
 <script>
-import EssaySearch from "@/views/Essay/EssaySearch";
-import EssayLeft from "@/views/Essay/EssayLeft";
-import EssayRight from "@/views/Essay/EssayRight";
-import { getArticle, getSearch } from "@/api/api";
+import EssaySearch from '@/views/Essay/EssaySearch'
+import EssayLeft from '@/views/Essay/EssayLeft'
+import EssayRight from '@/views/Essay/EssayRight'
+import { getArticle, getSearch } from '@/api/api'
 export default {
-  name: "Essay",
+  name: 'Essay',
   components: {
     EssaySearch,
     EssayLeft,
-    EssayRight,
+    EssayRight
   },
   data() {
     return {
       articcle: [],
-      allList: [],
-    };
+      allList: []
+    }
   },
   created() {
-    this.getData();
+    this.getData()
   },
   methods: {
     searchRequest(obj) {
-      getSearch(obj).then((res) => {
+      getSearch(obj).then(res => {
         if (res.code == 200) {
-          this.articcle = res.data;
+          this.articcle = res.data
         } else {
           this.$notify({
-            title: "抱歉",
+            title: '抱歉',
             message: res.msg,
-            type: "warning",
-          });
+            type: 'warning'
+          })
         }
-      });
+      })
     },
     getData() {
-      getArticle({ pageNumber: 1, pageSize: 1000 }).then((res) => {
-        this.articcle = res.data.content;
-        this.allList = res.data.content;
-        this.$show();
-      });
-    },
-  },
-};
+      getArticle({ pageNumber: 1, pageSize: 1000 }).then(res => {
+        this.articcle = res.data.content
+        this.allList = res.data.content
+        this.$show()
+      })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
@@ -76,11 +76,11 @@ export default {
   padding-bottom: 50px;
   max-width: 1300px;
   min-width: 1024px;
-  /deep/ .contain-left {
+  ::v-deep .contain-left {
     flex: 1;
     background: #ffffff;
   }
-  /deep/ .contain-right {
+  ::v-deep .contain-right {
     margin-left: 16px;
     // background: #ffffff;
     width: 280px;

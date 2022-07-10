@@ -103,7 +103,7 @@ export default {
   position: absolute;
   z-index: 1;
   width: 420px;
-  /deep/ .aplayer {
+  ::v-deep .aplayer {
     border-radius: 15px 15px 0 0;
     height: 100px;
     .aplayer-body,

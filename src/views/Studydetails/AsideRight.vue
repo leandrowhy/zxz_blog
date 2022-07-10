@@ -43,9 +43,18 @@ export default {
     dateTime() {
       if (this.valDate != null) {
         let date = new Date(this.valDate)
-        let hour = date.getHours().toString().padStart(2, '0')
-        let minute = date.getMinutes().toString().padStart(2, '0')
-        let second = date.getSeconds().toString().padStart(2, '0')
+        let hour = date
+          .getHours()
+          .toString()
+          .padStart(2, '0')
+        let minute = date
+          .getMinutes()
+          .toString()
+          .padStart(2, '0')
+        let second = date
+          .getSeconds()
+          .toString()
+          .padStart(2, '0')
 
         return hour + ' : ' + minute + ' : ' + second
       }
@@ -94,7 +103,7 @@ html {
     font-size: 1rem;
     box-sizing: border-box;
   }
-  /deep/ li {
+  ::v-deep li {
     list-style: none;
     .section-link {
       padding-left: 5px;

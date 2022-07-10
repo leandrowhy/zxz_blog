@@ -238,7 +238,7 @@ export default {
 }
 .li-active {
   color: #72dafa !important;
-  & /deep/ .el-dropdown-link {
+  & ::v-deep .el-dropdown-link {
     color: #72dafa !important;
   }
 }

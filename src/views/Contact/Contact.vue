@@ -75,7 +75,7 @@ export default {
     margin-bottom: 30px;
     padding-top: 20px;
     padding-bottom: 20px;
-    /deep/ #vcomments {
+    ::v-deep #vcomments {
       width: auto !important;
       padding: 10px 40px;
     }
